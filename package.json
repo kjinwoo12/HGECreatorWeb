@@ -1,1 +1,9 @@
-{}
+{
+  "dependencies": {
+    "gh-pages": "^6.3.0"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d build"
+  },
+  "hompage":"https://kjinwoo12.github.io/HGECreatorWeb/"
+}
