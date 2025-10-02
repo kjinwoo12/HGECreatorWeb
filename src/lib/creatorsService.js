@@ -1,9 +1,9 @@
-import { sampleCreators } from '@/data/creators';
+import { dataStore } from './dataStore';
 
 class CreatorsService {
     async getAllCreators() {
-        // 로컬 샘플 데이터만 사용
-        return sampleCreators;
+        // 데이터 스토어에서 크리에이터 데이터 가져오기
+        return dataStore.getCreators();
     }
 
     async getCreatorById(id) {

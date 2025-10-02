@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { clearCreatorsCache, getCreatorsFromSheets } from '@/lib/googleSheets';
 // TypeScript import removed
 
 export default function AdminPanel({ onDataUpdate }) {

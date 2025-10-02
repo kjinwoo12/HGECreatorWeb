@@ -1,9 +1,9 @@
-import { mockSiteContent } from '@/data/siteContent';
+import { dataStore } from './dataStore';
 
 class ContentService {
     async getSiteContent() {
-        // 로컬 목 데이터만 사용
-        return mockSiteContent;
+        // 데이터 스토어에서 사이트 콘텐츠 가져오기
+        return dataStore.getSiteContent();
     }
 }
 
@@ -16,5 +16,5 @@ export async function getSiteContent() {
 }
 
 export function clearContentCache() {
-    // 캐시 기능 제거됨
+    // 데이터 스토어 기반으로 변경됨
 }

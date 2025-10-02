@@ -5,7 +5,6 @@ import CreatorCard from '@/components/CreatorCard';
 import CreatorFilter from '@/components/CreatorFilter';
 import AdminPanel from '@/components/AdminPanel';
 import { sampleCreators } from '@/data/creators';
-import { getCreatorsFromSheets, clearCreatorsCache } from '@/lib/googleSheets';
 
 export default function CreatorsPage() {
     const [filter, setFilter] = useState({});

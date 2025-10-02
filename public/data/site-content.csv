@@ -1,0 +1,9 @@
+section,key,value,type,label
+hero,title,한국 게임 크리에이터 생태계,string,
+hero,subtitle,HGE Creator Network,string,
+hero,description,인디 게임 개발자와 크리에이터를 연결하는 플랫폼입니다. 함께 성장하고 더 나은 게임 문화를 만들어가세요.,string,
+hero,primaryButtonText,크리에이터 찾기,string,
+hero,primaryButtonLink,/creators,string,
+statistics,creators,150+,string,등록된 크리에이터
+statistics,projects,80+,string,성공한 협업 프로젝트
+statistics,companies,45+,string,파트너 게임 회사

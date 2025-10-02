@@ -1,0 +1,4 @@
+id,gameTitle,category,description,image,featured,publishedDate,tags
+1,드림 저니,adventure,"몽환적인 세계관과 아름다운 아트워크로 주목받은 어드벤처 게임",/success-stories/dream-journey-1.jpg,true,2024-01-15,"어드벤처;인디;몽환적;아트워크"
+2,브레인 챌린지,puzzle,"창의적인 퍼즐 메커니즘으로 게이머들의 사랑을 받은 퍼즐 게임",/success-stories/brain-challenge-1.jpg,true,2024-02-20,"퍼즐;두뇌게임;창의적;메커니즘"
+3,네온 나이트,action,"사이버펑크 세계관의 액션 게임으로 큰 인기를 얻음",/success-stories/neon-night-1.jpg,true,2024-03-10,"액션;사이버펑크;네온;미래"
