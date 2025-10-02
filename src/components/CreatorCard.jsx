@@ -1,12 +1,7 @@
-import { Creator } from '@/types/creator';
 import Image from 'next/image';
 
-interface CreatorCardProps {
-    creator: Creator;
-}
-
-export default function CreatorCard({ creator }: CreatorCardProps) {
-    const getCategoryColor = (category: string) => {
+export default function CreatorCard({ creator }) {
+    const getCategoryColor = (category) => {
         const colors = {
             'streaming': 'bg-purple-100 text-purple-800',
             'illustration': 'bg-pink-100 text-pink-800',
@@ -15,10 +10,10 @@ export default function CreatorCard({ creator }: CreatorCardProps) {
             'content-creation': 'bg-yellow-100 text-yellow-800',
             'marketing': 'bg-indigo-100 text-indigo-800',
         };
-        return colors[category as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+        return colors[category] || 'bg-gray-100 text-gray-800';
     };
 
-    const getCategoryLabel = (category: string) => {
+    const getCategoryLabel = (category) => {
         const labels = {
             'streaming': '스트리밍',
             'illustration': '일러스트',
@@ -27,7 +22,7 @@ export default function CreatorCard({ creator }: CreatorCardProps) {
             'content-creation': '콘텐츠',
             'marketing': '마케팅',
         };
-        return labels[category as keyof typeof labels] || category;
+        return labels[category] || category;
     };
 
     return (
@@ -42,8 +37,7 @@ export default function CreatorCard({ creator }: CreatorCardProps) {
                         className="object-cover"
                         onError={(e) => {
                             // 이미지 로드 실패 시 기본 아바타 표시
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
+                            e.target.style.display = 'none';
                         }}
                     />
                 ) : (

@@ -1,6 +1,4 @@
-import { Creator, CreatorCategory } from '@/types/creator';
-
-export const sampleCreators: Creator[] = [
+export const sampleCreators = [
     {
         id: '1',
         name: '게임스트리머 김민수',
@@ -299,7 +297,7 @@ export const sampleCreators: Creator[] = [
     }
 ];
 
-export const creatorCategories: { value: CreatorCategory; label: string; description: string }[] = [
+export const creatorCategories = [
     {
         value: 'streaming',
         label: '스트리밍 협업',

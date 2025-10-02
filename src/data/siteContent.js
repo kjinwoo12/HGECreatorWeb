@@ -1,6 +1,6 @@
-import { SiteContent } from '@/types/content';
+// TypeScript import removed
 
-export const mockSiteContent: SiteContent = {
+export const mockSiteContent = {
     hero: {
         title: "한국 게임 크리에이터 생태계",
         subtitle: "HGE Creator Network",

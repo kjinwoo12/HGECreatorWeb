@@ -1,26 +1,21 @@
-import { SiteContent } from '@/types/content';
 import { mockSiteContent } from '@/data/siteContent';
 
 // 구글 시트 설정 (콘텐츠 관리용)
 const CONTENT_SPREADSHEET_ID = process.env.NEXT_PUBLIC_CONTENT_SHEETS_SPREADSHEET_ID;
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_API_KEY;
 
-interface GoogleSheetsContentResponse {
-    values: string[][];
-}
-
 class ContentService {
-    private baseUrl = 'https://sheets.googleapis.com/v4/spreadsheets';
-    private contentSheetRange = 'Content!A:D'; // 콘텐츠 시트 범위
-    private settingsSheetRange = 'Settings!A:D'; // 설정 시트 범위
-
     constructor() {
+        this.baseUrl = 'https://sheets.googleapis.com/v4/spreadsheets';
+        this.contentSheetRange = 'Content!A:D'; // 콘텐츠 시트 범위
+        this.settingsSheetRange = 'Settings!A:D'; // 설정 시트 범위
+        
         if (!CONTENT_SPREADSHEET_ID || !API_KEY) {
             console.warn('콘텐츠 관리 시트가 설정되지 않았습니다.');
         }
     }
 
-    async getSiteContent(): Promise<SiteContent> {
+    async getSiteContent() {
         if (!CONTENT_SPREADSHEET_ID || !API_KEY) {
             console.warn('콘텐츠 시트가 설정되지 않았습니다. 목 데이터를 사용합니다.');
             return mockSiteContent;
@@ -28,23 +23,23 @@ class ContentService {
 
         try {
             // 콘텐츠 시트와 설정 시트를 병렬로 가져오기
-            const [contentData, settingsData] = await Promise.all([
+            const [contentData] = await Promise.all([
                 this.fetchSheetData(this.contentSheetRange),
-                this.fetchSheetData(this.settingsSheetRange)
+                // this.fetchSheetData(this.settingsSheetRange) // 향후 사용 예정
             ]);
 
             // 데이터 파싱 및 병합
             const parsedContent = this.parseContentData(contentData);
-            const parsedSettings = this.parseSettingsData(settingsData);
+            // const parsedSettings = this.parseSettingsData(settingsData); // 향후 사용 예정
 
-            return this.mergeContentData(parsedContent, parsedSettings);
+            return this.mergeContentData(parsedContent);
         } catch (error) {
             console.error('콘텐츠 데이터 로드 실패:', error);
             return mockSiteContent;
         }
     }
 
-    private async fetchSheetData(range: string): Promise<string[][]> {
+    async fetchSheetData(range) {
         const url = `${this.baseUrl}/${CONTENT_SPREADSHEET_ID}/values/${range}?key=${API_KEY}`;
         const response = await fetch(url);
 
@@ -52,12 +47,12 @@ class ContentService {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data: GoogleSheetsContentResponse = await response.json();
+        const data = await response.json();
         return data.values || [];
     }
 
-    private parseContentData(rows: string[][]): Partial<SiteContent> {
-        const content: any = {};
+    parseContentData(rows) {
+        const content = {};
 
         // 첫 번째 행은 헤더이므로 제외
         rows.slice(1).forEach(row => {
@@ -83,8 +78,8 @@ class ContentService {
         return content;
     }
 
-    private parseSettingsData(rows: string[][]): any {
-        const settings: any = {};
+    parseSettingsData(rows) {
+        const settings = {};
 
         rows.slice(1).forEach(row => {
             const [key, value, type] = row;
@@ -96,7 +91,7 @@ class ContentService {
         return settings;
     }
 
-    private convertValue(value: string, type?: string): any {
+    convertValue(value, type) {
         if (!value) return '';
 
         switch (type?.toLowerCase()) {
@@ -117,12 +112,12 @@ class ContentService {
         }
     }
 
-    private mergeContentData(content: Partial<SiteContent>, settings: any): SiteContent {
+    mergeContentData(content) {
         // 목 데이터와 시트 데이터 병합
-        return this.deepMerge(mockSiteContent, content) as SiteContent;
+        return this.deepMerge(mockSiteContent, content);
     }
 
-    private deepMerge(target: any, source: any): any {
+    deepMerge(target, source) {
         const result = { ...target };
 
         for (const key in source) {
@@ -136,7 +131,7 @@ class ContentService {
         return result;
     }
 
-    private getDefaultContent(): SiteContent {
+    getDefaultContent() {
         return {
             hero: {
                 title: "인디 게임과 크리에이터를 연결",
@@ -383,7 +378,7 @@ class ContentService {
     }
 
     // 캐싱 관련 메서드들
-    async getCachedContent(): Promise<SiteContent> {
+    async getCachedContent() {
         const cacheKey = 'site-content-cache';
         const cacheTime = 5 * 60 * 1000; // 5분 캐시
 
@@ -428,7 +423,7 @@ class ContentService {
 export const contentService = new ContentService();
 
 // 편의 함수들
-export async function getSiteContent(): Promise<SiteContent> {
+export async function getSiteContent() {
     return await contentService.getCachedContent();
 }
 

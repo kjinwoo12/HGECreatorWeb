@@ -1,12 +1,6 @@
 import Link from 'next/link';
-import { HeroContent, StatisticsContent } from '@/types/content';
 
-interface HeroSectionProps {
-    content?: HeroContent;
-    statistics?: StatisticsContent;
-}
-
-export default function HeroSection({ content, statistics }: HeroSectionProps) {
+export default function HeroSection({ content, statistics }) {
     // 기본값 설정
     const heroContent = content || {
         title: "인디 게임과 크리에이터를 연결",

@@ -1,12 +1,10 @@
-import { Creator, CreatorCategory } from '@/types/creator';
+// TypeScript import removed
 
 // 구글 시트 설정
 const SPREADSHEET_ID = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_SPREADSHEET_ID;
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_API_KEY;
 
-interface GoogleSheetsResponse {
-    values: string[][];
-}
+// GoogleSheetsResponse interface removed
 
 // Google Sheets 행 데이터 타입 (현재 사용하지 않지만 향후 확장 가능)
 // interface GoogleSheetsCreatorRow {
@@ -28,16 +26,16 @@ interface GoogleSheetsResponse {
 // }
 
 class GoogleSheetsService {
-    private baseUrl = 'https://sheets.googleapis.com/v4/spreadsheets';
-    private sheetRange = 'Sheet1!A:O'; // A부터 O열까지 (15개 컬럼)
-
     constructor() {
+        this.baseUrl = 'https://sheets.googleapis.com/v4/spreadsheets';
+        this.sheetRange = 'Sheet1!A:O'; // A부터 O열까지 (15개 컬럼)
+        
         if (!SPREADSHEET_ID || !API_KEY) {
             console.warn('Google Sheets 설정이 완료되지 않았습니다.');
         }
     }
 
-    async getCreators(): Promise<Creator[]> {
+    async getCreators() {
         if (!SPREADSHEET_ID || !API_KEY) {
             console.warn('Google Sheets가 설정되지 않았습니다. 로컬 데이터를 사용합니다.');
             return this.getFallbackData();
@@ -51,7 +49,7 @@ class GoogleSheetsService {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const data: GoogleSheetsResponse = await response.json();
+            const data = await response.json();
 
             if (!data.values || data.values.length < 2) {
                 console.warn('Google Sheets에 데이터가 없습니다.');
@@ -61,7 +59,7 @@ class GoogleSheetsService {
             // 첫 번째 행은 헤더이므로 제외
             const rows = data.values.slice(1);
 
-            const creators: Creator[] = rows.map((row, index) => {
+            const creators = rows.map((row, index) => {
                 return this.parseRowToCreator(row, index);
             }).filter(creator => creator.id && creator.name);
 
@@ -72,7 +70,7 @@ class GoogleSheetsService {
         }
     }
 
-    private parseRowToCreator(row: string[], index: number): Creator {
+    parseRowToCreator(row, index) {
         // 구글 시트의 컬럼 순서에 맞춰 파싱
         // A: ID, B: Name, C: Category, D: Description, E: ProfileImage, 
         // F: Specialties, G: YouTube, H: Twitch, I: Twitter, J: Instagram, 
@@ -99,24 +97,24 @@ class GoogleSheetsService {
         };
     }
 
-    private validateCategory(category: string): CreatorCategory {
-        const validCategories: CreatorCategory[] = [
+    validateCategory(category) {
+        const validCategories = [
             'streaming', 'illustration', 'voice-acting',
             'event-coordination', 'content-creation', 'marketing'
         ];
 
         const lowerCategory = category.toLowerCase().replace(/[\s-]/g, '-');
-        return validCategories.includes(lowerCategory as CreatorCategory)
-            ? lowerCategory as CreatorCategory
+        return validCategories.includes(lowerCategory)
+            ? lowerCategory
             : 'content-creation';
     }
 
-    private parseStringArray(str: string, delimiter: string = ','): string[] {
+    parseStringArray(str, delimiter = ',') {
         if (!str) return [];
         return str.split(delimiter).map(item => item.trim()).filter(item => item);
     }
 
-    private getFallbackData(): Creator[] {
+    getFallbackData() {
         // 로컬 백업 데이터를 가져옴 (동적 import 사용)
         try {
             // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -129,7 +127,7 @@ class GoogleSheetsService {
     }
 
     // 데이터 캐싱을 위한 메서드 (클라이언트 사이드에서만 동작)
-    async getCachedCreators(): Promise<Creator[]> {
+    async getCachedCreators() {
         const cacheKey = 'creators-cache';
         const cacheTime = 5 * 60 * 1000; // 5분 캐시
 
@@ -176,7 +174,7 @@ class GoogleSheetsService {
 export const googleSheetsService = new GoogleSheetsService();
 
 // 편의 함수들
-export async function getCreatorsFromSheets(): Promise<Creator[]> {
+export async function getCreatorsFromSheets() {
     return await googleSheetsService.getCachedCreators();
 }
 

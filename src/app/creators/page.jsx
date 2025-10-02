@@ -6,13 +6,12 @@ import CreatorFilter from '@/components/CreatorFilter';
 import AdminPanel from '@/components/AdminPanel';
 import { sampleCreators } from '@/data/creators';
 import { getCreatorsFromSheets, clearCreatorsCache } from '@/lib/googleSheets';
-import { Creator, CreatorFilter as FilterType } from '@/types/creator';
 
 export default function CreatorsPage() {
-    const [filter, setFilter] = useState<FilterType>({});
-    const [creators, setCreators] = useState<Creator[]>(sampleCreators);
+    const [filter, setFilter] = useState({});
+    const [creators, setCreators] = useState(sampleCreators);
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState(null);
 
     // 구글 시트에서 데이터 로드
     useEffect(() => {

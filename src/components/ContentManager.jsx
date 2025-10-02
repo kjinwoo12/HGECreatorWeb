@@ -2,17 +2,12 @@
 
 import { useState } from 'react';
 import { clearContentCache, getSiteContent } from '@/lib/contentService';
-import { SiteContent } from '@/types/content';
 
-interface ContentManagerProps {
-    onContentUpdate?: (content: SiteContent) => void;
-}
-
-export default function ContentManager({ onContentUpdate }: ContentManagerProps) {
+export default function ContentManager({ onContentUpdate }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [lastSync, setLastSync] = useState<Date | null>(null);
-    const [syncStatus, setSyncStatus] = useState<'success' | 'error' | null>(null);
+    const [lastSync, setLastSync] = useState(null);
+    const [syncStatus, setSyncStatus] = useState(null);
     const [activeTab, setActiveTab] = useState('content');
 
     const handleSyncContent = async () => {

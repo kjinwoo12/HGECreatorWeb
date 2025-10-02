@@ -1,19 +1,19 @@
-import { Creator, CreatorCategory, CreatorFilter } from '@/types/creator';
+// TypeScript import removed
 import { sampleCreators, creatorCategories } from '@/data/creators';
 
 class CreatorsService {
-    async getAllCreators(): Promise<Creator[]> {
+    async getAllCreators() {
         // 실제 환경에서는 API 호출이나 데이터베이스 조회
         // 현재는 목 데이터 반환
         return sampleCreators;
     }
 
-    async getCreatorById(id: string): Promise<Creator | null> {
+    async getCreatorById(id) {
         const creator = sampleCreators.find(creator => creator.id === id);
         return creator || null;
     }
 
-    async getFilteredCreators(filter: CreatorFilter): Promise<Creator[]> {
+    async getFilteredCreators(filter) {
         let filteredCreators = [...sampleCreators];
 
         // 카테고리 필터
@@ -59,18 +59,18 @@ class CreatorsService {
         return filteredCreators;
     }
 
-    async getCreatorsByCategory(category: CreatorCategory): Promise<Creator[]> {
+    async getCreatorsByCategory(category) {
         return sampleCreators.filter(creator => creator.category === category);
     }
 
-    async getFeaturedCreators(limit: number = 6): Promise<Creator[]> {
+    async getFeaturedCreators(limit = 6) {
         // 가용한 크리에이터 중에서 무작위로 선택
         const availableCreators = sampleCreators.filter(creator => creator.isAvailable);
         const shuffled = availableCreators.sort(() => 0.5 - Math.random());
         return shuffled.slice(0, limit);
     }
 
-    async searchCreators(query: string): Promise<Creator[]> {
+    async searchCreators(query) {
         const lowerQuery = query.toLowerCase();
         return sampleCreators.filter(creator =>
             creator.name.toLowerCase().includes(lowerQuery) ||
@@ -105,7 +105,7 @@ class CreatorsService {
         };
     }
 
-    async getRecommendedCreators(creatorId: string, limit: number = 3): Promise<Creator[]> {
+    async getRecommendedCreators(creatorId, limit = 3) {
         const creator = await this.getCreatorById(creatorId);
         if (!creator) return [];
 
@@ -135,19 +135,19 @@ class CreatorsService {
 export const creatorsService = new CreatorsService();
 
 // 편의 함수들
-export async function getAllCreators(): Promise<Creator[]> {
+export async function getAllCreators() {
     return await creatorsService.getAllCreators();
 }
 
-export async function getCreatorById(id: string): Promise<Creator | null> {
+export async function getCreatorById(id) {
     return await creatorsService.getCreatorById(id);
 }
 
-export async function getFilteredCreators(filter: CreatorFilter): Promise<Creator[]> {
+export async function getFilteredCreators(filter) {
     return await creatorsService.getFilteredCreators(filter);
 }
 
-export async function getFeaturedCreators(limit?: number): Promise<Creator[]> {
+export async function getFeaturedCreators(limit) {
     return await creatorsService.getFeaturedCreators(limit);
 }
 

@@ -1,32 +1,25 @@
 'use client';
 
 import { useState } from 'react';
-import { CreatorCategory, CreatorFilter as FilterType } from '@/types/creator';
 import { creatorCategories } from '@/data/creators';
 
-interface CreatorFilterProps {
-    onFilterChange: (filter: FilterType) => void;
-    totalCount: number;
-    filteredCount: number;
-}
-
-export default function CreatorFilter({ onFilterChange, totalCount, filteredCount }: CreatorFilterProps) {
-    const [filter, setFilter] = useState<FilterType>({});
+export default function CreatorFilter({ onFilterChange, totalCount, filteredCount }) {
+    const [filter, setFilter] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
 
-    const handleCategoryChange = (category: CreatorCategory | undefined) => {
+    const handleCategoryChange = (category) => {
         const newFilter = { ...filter, category };
         setFilter(newFilter);
         onFilterChange(newFilter);
     };
 
-    const handleAvailabilityChange = (isAvailable: boolean | undefined) => {
+    const handleAvailabilityChange = (isAvailable) => {
         const newFilter = { ...filter, isAvailable };
         setFilter(newFilter);
         onFilterChange(newFilter);
     };
 
-    const handleSearchChange = (term: string) => {
+    const handleSearchChange = (term) => {
         setSearchTerm(term);
         const newFilter = { ...filter, searchTerm: term };
         setFilter(newFilter);
@@ -75,7 +68,7 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
                         <select
                             id="category"
                             value={filter.category || ''}
-                            onChange={(e) => handleCategoryChange(e.target.value as CreatorCategory || undefined)}
+                            onChange={(e) => handleCategoryChange(e.target.value || undefined)}
                             className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         >
                             <option value="">전체</option>

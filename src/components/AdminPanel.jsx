@@ -2,17 +2,13 @@
 
 import { useState } from 'react';
 import { clearCreatorsCache, getCreatorsFromSheets } from '@/lib/googleSheets';
-import { Creator } from '@/types/creator';
+// TypeScript import removed
 
-interface AdminPanelProps {
-    onDataUpdate?: (creators: Creator[]) => void;
-}
-
-export default function AdminPanel({ onDataUpdate }: AdminPanelProps) {
+export default function AdminPanel({ onDataUpdate }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [lastSync, setLastSync] = useState<Date | null>(null);
-    const [syncStatus, setSyncStatus] = useState<'success' | 'error' | null>(null);
+    const [lastSync, setLastSync] = useState(null);
+    const [syncStatus, setSyncStatus] = useState(null);
 
     const handleSyncData = async () => {
         setIsLoading(true);

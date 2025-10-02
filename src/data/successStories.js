@@ -1,6 +1,6 @@
-import { CollaborationCase } from '@/types/creator';
+// TypeScript import removed
 
-export const mockSuccessStories: CollaborationCase[] = [
+export const mockSuccessStories = [
     {
         id: 'story-1',
         title: '인디 RPG "몽환의 여행" 성공적인 런칭',

@@ -6,10 +6,9 @@ import ContentManager from '@/components/ContentManager';
 import Link from 'next/link';
 import { creatorCategories } from '@/data/creators';
 import { getSiteContent } from '@/lib/contentService';
-import { SiteContent } from '@/types/content';
 
 export default function Home() {
-  const [content, setContent] = useState<SiteContent | null>(null);
+  const [content, setContent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

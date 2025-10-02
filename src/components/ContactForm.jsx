@@ -2,22 +2,8 @@
 
 import { useState } from 'react';
 
-interface FormData {
-    companyName: string;
-    contactName: string;
-    email: string;
-    phone: string;
-    gameTitle: string;
-    gameGenre: string;
-    targetLaunch: string;
-    collaborationType: string[];
-    budget: string;
-    description: string;
-    additionalInfo: string;
-}
-
 export default function ContactForm() {
-    const [formData, setFormData] = useState<FormData>({
+    const [formData, setFormData] = useState({
         companyName: '',
         contactName: '',
         email: '',
@@ -32,7 +18,7 @@ export default function ContactForm() {
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [submitStatus, setSubmitStatus] = useState('idle');
 
     const collaborationTypes = [
         { id: 'streaming', label: '스트리밍 협업', description: '게임 플레이 방송, 리뷰 영상' },
@@ -57,7 +43,7 @@ export default function ContactForm() {
         '협의 후 결정'
     ];
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -65,7 +51,7 @@ export default function ContactForm() {
         }));
     };
 
-    const handleCollaborationTypeChange = (typeId: string) => {
+    const handleCollaborationTypeChange = (typeId) => {
         setFormData(prev => ({
             ...prev,
             collaborationType: prev.collaborationType.includes(typeId)
@@ -74,7 +60,7 @@ export default function ContactForm() {
         }));
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
 
