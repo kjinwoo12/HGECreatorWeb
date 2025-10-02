@@ -1,55 +1,34 @@
-// TypeScript import removed
-import { mockSuccessStories, successStatistics } from '@/data/successStories';
+import { sampleSuccessStories } from '@/data/successStories';
 
 class SuccessStoriesService {
     async getAllSuccessStories() {
-        // 실제 환경에서는 API 호출이나 데이터베이스 조회
-        // 현재는 목 데이터 반환
-        return mockSuccessStories;
+        // 로컬 샘플 데이터만 사용
+        return sampleSuccessStories;
     }
 
     async getSuccessStoryById(id) {
-        const story = mockSuccessStories.find(story => story.id === id);
-        return story || null;
+        const stories = await this.getAllSuccessStories();
+        return stories.find(story => story.id === id);
     }
 
     async getFeaturedSuccessStories(limit = 3) {
-        // 최신 순으로 정렬하여 상위 N개 반환
-        return mockSuccessStories
-            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-            .slice(0, limit);
+        const stories = await this.getAllSuccessStories();
+        return stories.filter(story => story.featured).slice(0, limit);
     }
 
     async getSuccessStoriesByCategory(category) {
-        return mockSuccessStories.filter(story =>
-            story.creators.some(creator => creator.category === category)
-        );
+        const stories = await this.getAllSuccessStories();
+        if (!category || category === 'all') {
+            return stories;
+        }
+        return stories.filter(story => story.category === category);
     }
 
     async getSuccessStoriesByGameTitle(gameTitle) {
-        return mockSuccessStories.filter(story =>
+        const stories = await this.getAllSuccessStories();
+        return stories.filter(story => 
             story.gameTitle.toLowerCase().includes(gameTitle.toLowerCase())
         );
-    }
-
-    getStatistics() {
-        return successStatistics;
-    }
-
-    async searchSuccessStories(query) {
-        const lowerQuery = query.toLowerCase();
-        return mockSuccessStories.filter(story =>
-            story.title.toLowerCase().includes(lowerQuery) ||
-            story.description.toLowerCase().includes(lowerQuery) ||
-            story.gameTitle.toLowerCase().includes(lowerQuery) ||
-            story.gameCompany.toLowerCase().includes(lowerQuery) ||
-            story.collaborationType.toLowerCase().includes(lowerQuery)
-        );
-    }
-
-    async getRandomSuccessStories(count = 3) {
-        const shuffled = [...mockSuccessStories].sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, count);
     }
 }
 
@@ -65,10 +44,14 @@ export async function getSuccessStoryById(id) {
     return await successStoriesService.getSuccessStoryById(id);
 }
 
-export async function getFeaturedSuccessStories(limit) {
+export async function getFeaturedSuccessStories(limit = 3) {
     return await successStoriesService.getFeaturedSuccessStories(limit);
 }
 
-export function getSuccessStatistics() {
-    return successStoriesService.getStatistics();
+export async function getSuccessStoriesByCategory(category) {
+    return await successStoriesService.getSuccessStoriesByCategory(category);
+}
+
+export async function getSuccessStoriesByGameTitle(gameTitle) {
+    return await successStoriesService.getSuccessStoriesByGameTitle(gameTitle);
 }

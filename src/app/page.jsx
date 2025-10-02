@@ -10,14 +10,18 @@ import { getSiteContent } from '@/lib/contentService';
 export default function Home() {
   const [content, setContent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function loadContent() {
       try {
+        console.log('콘텐츠 로드 시작...');
         const siteContent = await getSiteContent();
+        console.log('콘텐츠 로드 완료:', siteContent);
         setContent(siteContent);
       } catch (error) {
         console.error('콘텐츠 로드 실패:', error);
+        setError(error.message);
       } finally {
         setIsLoading(false);
       }
@@ -25,6 +29,17 @@ export default function Home() {
 
     loadContent();
   }, []);
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-red-600 mb-4">오류 발생</h1>
+          <p className="text-gray-600">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading || !content) {
     return (
