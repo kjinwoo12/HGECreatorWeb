@@ -1,4 +1,4 @@
-section,key,value
+page,key,value
 home,title,Korean Game Creator Ecosystem
 home,subtitle,HGE Creator Network
 home,description,A platform connecting indie game developers with creators. Let's grow together and build a better gaming culture.
@@ -121,6 +121,9 @@ loading,all_data_loading,Loading all data
 loading,initialization_complete,Initialization complete
 loading,loading_complete,Loading complete
 loading,default_data_start,Starting with default data
+categories,title,Creator Categories
+categories,subtitle,Meet professional creators from various fields.
+categories,link_text,Learn More
 categories,streaming_label,Streaming Collaboration
 categories,streaming_description,Indie game builds, broadcast materials, game QA, etc.
 categories,illustration_label,Illustration
