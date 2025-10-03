@@ -78,14 +78,23 @@ function parseCSVLine(line) {
  */
 export async function fetchCSV(csvPath) {
     try {
+        console.log('🔍 CSV 파일 요청:', csvPath);
         const response = await fetch(csvPath);
+        console.log('📡 응답 상태:', response.status, response.statusText);
+        
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
         }
+        
         const csvText = await response.text();
-        return parseCSV(csvText);
+        console.log('📄 CSV 텍스트 길이:', csvText.length);
+        
+        const parsedData = parseCSV(csvText);
+        console.log('✅ CSV 파싱 완료:', parsedData.length, '개 항목');
+        
+        return parsedData;
     } catch (error) {
-        console.error(`CSV 파일 로드 실패 (${csvPath}):`, error);
+        console.error(`❌ CSV 파일 로드 실패 (${csvPath}):`, error);
         throw error;
     }
 }

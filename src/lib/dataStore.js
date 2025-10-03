@@ -5,7 +5,6 @@ import { fetchCSV } from './csvParser';
 import { getCsvPath } from './pathUtils';
 import { mockSiteContent } from '@/data/siteContent';
 import { sampleCreators } from '@/data/creators';
-import { mockSuccessStories } from '@/data/successStories';
 
 class DataStore {
     constructor() {
@@ -139,29 +138,104 @@ class DataStore {
     }
 
     async loadSuccessStories() {
-        // 언어별 CSV 파일 경로 설정
-        const csvPath = getCsvPath('success-stories.csv', this.currentLanguage);
-        const csvData = await this.loadCsvData(csvPath);
-        
-        if (csvData.length > 0) {
-            // CSV 데이터를 성공 사례 객체로 변환
-            return csvData.map(row => ({
-                id: parseInt(row.id),
-                title: row.title,
-                gameTitle: row.gameTitle,
-                company: row.company,
-                collaborationType: row.collaborationType,
-                description: row.description,
-                results: Array.isArray(row.results) ? row.results : (row.results ? row.results.split(';') : []),
-                creators: Array.isArray(row.creators) ? row.creators : (row.creators ? row.creators.split(';') : []),
-                image: row.image,
-                date: row.date,
-                testimonial: row.testimonial,
-                clientName: row.clientName
-            }));
+        try {
+            // 언어별 CSV 파일 경로 설정
+            const csvPath = getCsvPath('success-stories.csv', this.currentLanguage);
+            console.log('🔍 성공 사례 CSV 경로:', csvPath);
+            
+            const csvData = await this.loadCsvData(csvPath);
+            console.log('📊 성공 사례 CSV 데이터:', csvData);
+            
+            if (csvData.length > 0) {
+                // CSV 데이터를 성공 사례 객체로 변환
+                const successStories = csvData.map(row => ({
+                    id: parseInt(row.id),
+                    title: row.title,
+                    gameTitle: row.gameTitle,
+                    company: row.company,
+                    collaborationType: row.collaborationType,
+                    description: row.description,
+                    results: Array.isArray(row.results) ? row.results : (row.results ? row.results.split(';') : []),
+                    creators: Array.isArray(row.creators) ? row.creators : (row.creators ? row.creators.split(';') : []),
+                    image: row.image,
+                    date: row.date,
+                    testimonial: row.testimonial,
+                    clientName: row.clientName
+                }));
+                
+                console.log('✅ 성공 사례 데이터 변환 완료:', successStories);
+                return successStories;
+            }
+            
+            console.log('⚠️ CSV 데이터가 없어서 기본 데이터 사용');
+            return this.getDefaultSuccessStories();
+        } catch (error) {
+            console.error('❌ 성공 사례 로딩 실패:', error);
+            return this.getDefaultSuccessStories();
         }
-        
-        return mockSuccessStories;
+    }
+
+    // 기본 성공 사례 데이터 반환
+    getDefaultSuccessStories() {
+        return [
+            {
+                id: 1,
+                title: "픽셀 아트 RPG '몽환의 여행' 대성공",
+                gameTitle: "몽환의 여행",
+                company: "인디스튜디오 A",
+                collaborationType: "스트리밍 + 일러스트",
+                description: "인디 RPG 게임의 스트리밍 협업과 팬아트 캠페인을 통해 런칭 첫 달 10만 다운로드를 달성했습니다.",
+                results: [
+                    "런칭 첫 달 10만 다운로드 달성",
+                    "YouTube 리뷰 영상 누적 조회수 50만회",
+                    "팬아트 이벤트 참여작 200개 이상",
+                    "Steam 평점 9.2/10 달성"
+                ],
+                creators: ["게임스트리머 김민수", "일러스트레이터 박지은"],
+                image: "/success-stories/SuccessStorySample.png",
+                date: "2024년 8월",
+                testimonial: "크리에이터들의 진정성 있는 리뷰와 아름다운 팬아트 덕분에 게임이 많은 사랑을 받을 수 있었습니다.",
+                clientName: "인디스튜디오 A 대표 이○○"
+            },
+            {
+                id: 2,
+                title: "모바일 퍼즐게임 '브레인 챌린지' 바이럴 성공",
+                gameTitle: "브레인 챌린지",
+                company: "퍼즐게임즈",
+                collaborationType: "콘텐츠 제작 + 마케팅",
+                description: "퍼즐게임의 특성을 살린 쇼츠 콘텐츠와 인플루언서 마케팅을 통해 앱스토어 1위를 달성했습니다.",
+                results: [
+                    "앱스토어 퍼즐게임 1위 달성",
+                    "쇼츠 콘텐츠 누적 조회수 1000만회",
+                    "인플루언서 협업 50명",
+                    "월간 활성 사용자 50만명"
+                ],
+                creators: ["콘텐츠 크리에이터 정다혜", "게임 마케터 서연주"],
+                image: "/success-stories/SuccessStorySample.png",
+                date: "2024년 7월",
+                testimonial: "쇼츠 콘텐츠의 바이럴 효과가 정말 놀라웠습니다. 게임의 재미를 한눈에 보여주는 영상들이 많은 사람들에게 전달되었어요.",
+                clientName: "퍼즐게임즈 대표 박○○"
+            },
+            {
+                id: 3,
+                title: "액션 게임 '네온 나이트' 글로벌 런칭",
+                gameTitle: "네온 나이트",
+                company: "액션스튜디오",
+                collaborationType: "성우 + 이벤트",
+                description: "한국어 더빙과 글로벌 이벤트를 통해 해외 시장 진출에 성공했습니다.",
+                results: [
+                    "글로벌 다운로드 100만회",
+                    "Steam 글로벌 판매량 1위",
+                    "게임 컨벤션 참여 10개국",
+                    "언론 보도 50개 이상"
+                ],
+                creators: ["성우 이성민", "이벤트 기획자 최유진"],
+                image: "/success-stories/SuccessStorySample.png",
+                date: "2024년 6월",
+                testimonial: "한국어 더빙의 퀄리티가 정말 높아서 해외 플레이어들도 한국어로 플레이하고 싶어했어요.",
+                clientName: "액션스튜디오 대표 김○○"
+            }
+        ];
     }
 
 
@@ -209,12 +283,7 @@ class DataStore {
 
     // 언어별 CSV 경로 반환
     getLanguageCsvPath(langCode, filename = 'site-content.csv') {
-        const languagePaths = {
-            ko: `/data/${filename}`,
-            en: `/data/en/${filename}`,
-            jp: `/data/jp/${filename}`
-        };
-        return languagePaths[langCode] || languagePaths.ko;
+        return getCsvPath(filename, langCode);
     }
 
     // 특정 언어의 사이트 콘텐츠 로딩
@@ -229,19 +298,19 @@ class DataStore {
             // CSV 데이터를 사이트 콘텐츠 형식으로 변환
             const content = { ...mockSiteContent };
             csvData.forEach(row => {
-                if (row.section && row.key && row.value) {
-                    if (!content[row.section]) {
-                        content[row.section] = {};
+                if (row.page && row.key && row.value) {
+                    if (!content[row.page]) {
+                        content[row.page] = {};
                     }
                     
-                    // statistics 섹션은 특별 처리 (value와 label 구조)
-                    if (row.section === 'statistics' && row.label) {
-                        content[row.section][row.key] = {
+                    // statistics 페이지는 특별 처리 (value와 label 구조)
+                    if (row.page === 'statistics' && row.label) {
+                        content[row.page][row.key] = {
                             value: row.value,
                             label: row.label
                         };
                     } else {
-                        content[row.section][row.key] = row.value;
+                        content[row.page][row.key] = row.value;
                     }
                 }
             });

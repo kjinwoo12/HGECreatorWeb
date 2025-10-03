@@ -8,7 +8,14 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "npm run build && touch out/.nojekyll && git add -f out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin +gh-pages"
+    "export": "next build",
+    "predeploy": "npm run export",
+    "deploy": "gh-pages -d out",
+    "deploy:manual": "npm run build && touch out/.nojekyll && git add -f out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin +gh-pages",
+    "test:static": "npm run export && serve -s out -l 3000",
+    "test:gh-pages": "npm run export && serve -s out -l 3001 --single",
+    "test:http": "npm run export && http-server out -p 3000 -o",
+    "test:http-spa": "npm run export && http-server out -p 3001 -o --proxy http://localhost:3001?"
   },
   "dependencies": {
     "dotenv": "^17.2.2",
@@ -24,6 +31,8 @@
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.3",
+    "http-server": "^14.1.1",
+    "serve": "^14.2.5",
     "tailwindcss": "^4"
   }
 }

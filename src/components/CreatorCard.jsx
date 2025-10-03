@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useDataStore } from '@/lib/dataStore';
 import CreatorModal from './CreatorModal';
+import { getImagePath } from '@/lib/pathUtils';
 
 export default function CreatorCard({ creator }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,7 +38,7 @@ export default function CreatorCard({ creator }) {
             <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200">
                 {creator.profileImage ? (
                     <Image
-                        src={creator.profileImage}
+                        src={getImagePath(creator.profileImage)}
                         alt={creator.name}
                         fill
                         className="object-cover"

@@ -1,4 +1,4 @@
-section,key,value
+page,key,value
 home,title,Korean Game Creator Ecosystem
 home,subtitle,HGE Creator Network
 home,description,A platform connecting indie game developers with creators. Let's grow together and build a better gaming culture.
@@ -57,9 +57,37 @@ collaboration,cta_subtitle,We will lead your game to success through our profess
 collaboration,cta_button,Apply for Collaboration
 collaboration,step1_title,Project Registration
 collaboration,step1_description,Register your game information and required creator types.
-collaboration,step1_detail1,Provide basic information such as game genre, target audience, and launch schedule
+collaboration,step1_detail1,Provide basic information such as game genre, target audience, release schedule
 collaboration,step1_detail2,Select required collaboration types (streaming, illustration, voice acting, events, etc.)
 collaboration,step1_detail3,Set budget range and collaboration period
+collaboration,step2_title,Creator Matching
+collaboration,step2_description,We recommend creators suitable for your project.
+collaboration,step2_detail1,AI-based matching system for optimal creator selection
+collaboration,step2_detail2,Comprehensive consideration of portfolio, experience, and availability
+collaboration,step2_detail3,Provide 3-5 candidate creator profiles
+collaboration,step3_title,Collaboration Discussion
+collaboration,step3_description,Discuss specific collaboration details with selected creators.
+collaboration,step3_detail1,Discuss collaboration scope, schedule, compensation, and other details
+collaboration,step3_detail2,Contract drafting and legal review support
+collaboration,step3_detail3,Project kickoff meeting arrangement
+collaboration,step4_title,Collaboration Progress
+collaboration,step4_description,Dedicated managers manage and support the collaboration process.
+collaboration,step4_detail1,Regular progress checks and reporting
+collaboration,step4_detail2,Prompt mediation and resolution when issues arise
+collaboration,step4_detail3,Quality management and feedback coordination
+collaboration,step5_title,Result Evaluation
+collaboration,step5_description,Evaluate collaboration results and collect feedback for future collaborations.
+collaboration,step5_detail1,Collaboration performance measurement and analysis
+collaboration,step5_detail2,Collect bidirectional feedback and derive improvement points
+collaboration,step5_detail3,Success case registration and promotion support
+collaboration,benefit1_title,Subculture Game Enhancement
+collaboration,benefit1_description,Maximize the subculture appeal of games through collaboration with professional creators.
+collaboration,benefit2_title,Increased Promotion Effectiveness
+collaboration,benefit2_description,Natural game promotion is possible by utilizing creators' fan base.
+collaboration,benefit3_title,Convention Connection
+collaboration,benefit3_description,Provide offline promotion opportunities connected to domestic and international game conventions.
+collaboration,benefit4_title,Cosplay Events
+collaboration,benefit4_description,Support fan-participatory marketing through game character cosplay.
 collaboration,step2_title,Creator Matching
 collaboration,step2_description,We recommend creators suitable for your project.
 collaboration,step2_detail1,AI-based matching system selects optimal creators
@@ -103,13 +131,53 @@ participate,target_title,Target Participants
 participate,target_subtitle,We are looking for various types of collaboration partners.
 participate,requirements_title,Participation Requirements
 participate,requirements_subtitle,Basic requirements for successful collaboration.
+participate,developer_title,Game Developers
+participate,developer_description,Companies or individual developers creating indie games
+participate,developer_feature1,Creator Matching Service
+participate,developer_feature2,Collaboration Process Management
+participate,developer_feature3,Marketing Strategy Development
+participate,developer_feature4,Performance Analysis and Reporting
+participate,developer_req1,Have a game in development or planned for release
+participate,developer_req2,Clear goals and budget for collaboration
+participate,developer_req3,Willingness to communicate with creators
+participate,developer_req4,Ability to provide game-related materials
+participate,creator_title,Creators
+participate,creator_description,Content creators from various fields
+participate,creator_feature1,Game Collaboration Opportunities
+participate,creator_feature2,Fair Compensation Guarantee
+participate,creator_feature3,Portfolio Management
+participate,creator_feature4,Professional Development Support
+participate,creator_req1,At least 1 year of experience in the field
+participate,creator_req2,Portfolio or activity records
+participate,creator_req3,Regular content creation ability
+participate,creator_req4,Interest and understanding of games
 participate,process_title,Participation Process
 participate,process_subtitle,Start collaboration in 4 simple steps.
+participate,process_step1_title,Application Submission
+participate,process_step1_desc,Submit your collaboration application through the form below.
+participate,process_step2_title,Review and Consultation
+participate,process_step2_desc,A dedicated manager will contact you within 2-3 days for detailed consultation.
+participate,process_step3_title,Matching and Negotiation
+participate,process_step3_desc,We match you with suitable creators and negotiate collaboration terms.
+participate,process_step4_title,Start Collaboration
+participate,process_step4_desc,Begin full-scale collaboration after contract signing.
+participate,faq1_question,How are collaboration costs determined?
+participate,faq1_answer,Costs are determined by considering project scale, collaboration type, duration, etc. We propose optimal solutions within your budget through consultation.
+participate,faq2_question,How long does collaboration take?
+participate,faq2_answer,It varies by collaboration type, but generally takes 2 weeks to 3 months. We proceed with a schedule that fits your project characteristics.
+participate,faq3_question,Is collaboration possible for small indie games?
+participate,faq3_answer,Of course. We provide various collaboration options that fit your game scale and budget. Small projects can also achieve successful collaboration.
+participate,faq4_question,Are overseas games eligible for collaboration?
+participate,faq4_answer,Yes, collaboration with overseas game companies is possible. We match you with creators who have global marketing experience.
 participate,form_title,Collaboration Application
 participate,form_subtitle,Please fill out the form below to apply for collaboration. A dedicated manager will contact you within 2-3 days.
 participate,faq_title,Frequently Asked Questions
 participate,contact_title,Have More Questions?
 participate,contact_subtitle,Contact us anytime. Our professional consultants will help you.
+participate,application_title,Collaboration Application Form
+participate,application_description,You can easily apply for collaboration through the Google form.
+participate,application_button,Apply for Collaboration
+participate,application_note,The Google form will open in a new window.
 loading,title,HGE Creator
 loading,subtitle,Game Creator Platform
 loading,progress_complete,Complete
@@ -121,6 +189,9 @@ loading,all_data_loading,Loading all data
 loading,initialization_complete,Initialization complete
 loading,loading_complete,Loading complete
 loading,default_data_start,Starting with default data
+categories,title,Creator Categories
+categories,subtitle,Meet professional creators from various fields.
+categories,link_text,Learn More
 categories,streaming_label,Streaming Collaboration
 categories,streaming_description,Indie game builds, broadcast materials, game QA, etc.
 categories,illustration_label,Illustration

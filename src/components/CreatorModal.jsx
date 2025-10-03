@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useDataStore } from '@/lib/dataStore';
+import { getImagePath } from '@/lib/pathUtils';
 
 export default function CreatorModal({ creator, isOpen, onClose }) {
     const { siteContent } = useDataStore();
@@ -85,7 +86,7 @@ export default function CreatorModal({ creator, isOpen, onClose }) {
                         <div className="relative h-full bg-gradient-to-br from-gray-100 to-gray-200">
                             {creator.profileImage ? (
                                 <Image
-                                    src={creator.profileImage}
+                                    src={getImagePath(creator.profileImage)}
                                     alt={creator.name}
                                     fill
                                     className="object-cover"

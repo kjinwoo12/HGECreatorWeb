@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useDataStore } from '@/lib/dataStore';
 import LanguageSelector from './LanguageSelector';
+import { isActivePath } from '@/lib/pathUtils';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,7 +38,7 @@ export default function Header() {
                     <div className="hidden md:flex items-center">
                         <div className="ml-10 flex items-baseline space-x-4">
                             {navigation.map((item) => {
-                                const isActive = pathname === item.href;
+                                const isActive = isActivePath(pathname, item.href);
                                 return (
                                     <Link
                                         key={item.name}
@@ -89,7 +90,7 @@ export default function Header() {
                     <div className="md:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
                             {navigation.map((item) => {
-                                const isActive = pathname === item.href;
+                                const isActive = isActivePath(pathname, item.href);
                                 return (
                                     <Link
                                         key={item.name}

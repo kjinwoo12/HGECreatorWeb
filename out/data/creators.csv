@@ -1,6 +1,0 @@
-id,name,category,description,profileImage,specialties,isAvailable,tags
-1,게임스트리머 김민수,streaming,"인디 게임 전문 스트리머로 5년간 다양한 인디 게임을 소개하며 게임 개발자와 플레이어를 연결하는 역할을 하고 있습니다.",/creators/GameStreamerSample.png,"인디게임 리뷰;실시간 게임 플레이;게임 QA;커뮤니티 관리",true,"인디게임;스트리밍;RPG;퍼즐게임;리뷰"
-2,일러스트레이터 박지은,illustration,"게임 캐릭터 디자인과 프로모션 일러스트를 전문으로 하는 아티스트입니다. 특히 판타지와 SF 장르에 특화되어 있습니다.",/creators/GameStreamerSample.png,"캐릭터 디자인;프로모션 일러스트;게임 UI 디자인;팬아트",true,"일러스트;캐릭터디자인;판타지;SF;프로모션"
-3,성우 이성민,voice-acting,"게임 캐릭터 더빙과 나레이션을 전문으로 하는 성우입니다. 다양한 연령대와 캐릭터 타입의 목소리 연기가 가능합니다.",/creators/GameStreamerSample.png,"캐릭터 더빙;게임 나레이션;트레일러 보이스오버;라이브 더빙",true,"성우;더빙;나레이션;캐릭터보이스;트레일러"
-4,이벤트 기획자 최유진,event-coordination,"게임 런칭 이벤트와 컨벤션 기획을 전문으로 하는 이벤트 코디네이터입니다. 온오프라인 하이브리드 이벤트 경험이 풍부합니다.",/creators/GameStreamerSample.png,"게임 런칭 이벤트;컨벤션 기획;온라인 이벤트;코스플레이 이벤트",false,"이벤트기획;컨벤션;런칭;코스플레이;온라인이벤트"
-5,콘텐츠 크리에이터 정다혜,content-creation,"게임 관련 영상 콘텐츠 제작과 소셜미디어 마케팅을 전문으로 하는 크리에이터입니다.",/creators/GameStreamerSample.png,"영상 편집;소셜미디어 마케팅;게임 리뷰 영상;쇼츠 콘텐츠",true,"영상제작;마케팅;소셜미디어;리뷰;쇼츠"

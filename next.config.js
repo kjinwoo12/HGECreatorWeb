@@ -11,11 +11,18 @@ const nextConfig = {
     config.resolve.alias['@'] = path.resolve(__dirname, 'src');
     return config;
   },
-  // 배포시에만 필요한 설정들
-  ...(process.env.NODE_ENV === 'production' && {
+  // 개발/프로덕션 환경 분리
+  ...(process.env.NODE_ENV === 'production' ? {
+    // 프로덕션 환경 (GitHub Pages 배포용)
     output: 'export',
     basePath: '/HGECreatorWeb',
     trailingSlash: true,
+    images: {
+      unoptimized: true
+    },
+    distDir: 'out'
+  } : {
+    // 개발 환경
     images: {
       unoptimized: true
     }
