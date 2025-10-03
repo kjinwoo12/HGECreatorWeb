@@ -301,9 +301,11 @@ success_stories,stats_total_projects_label,총 협업 프로젝트
 success_stories,stats_total_projects_desc,성공적으로 완료된 협업 프로젝트
 success_stories,stats_avg_improvement_label,평균 성과 향상
 success_stories,stats_avg_improvement_desc,협업 전 대비 평균 다운로드 증가율
-success_stories,stats_satisfaction_label,고객 만족도
-success_stories,stats_satisfaction_desc,협업 완료 후 고객 만족도 조사 결과
+success_stories,stats_success_rate_label,평균 프로젝트 성공률
+success_stories,stats_success_rate_desc,대부분의 프로젝트가 성공적으로 완료됩니다
+success_stories,stats_satisfaction_label,평균 만족도
+success_stories,stats_satisfaction_desc,높은 고객 만족도를 자랑합니다
 success_stories,stats_repeat_rate_label,재협업률
-success_stories,stats_repeat_rate_desc,한 번 협업한 게임사의 재협업 비율
+success_stories,stats_repeat_rate_desc,한번 협업한 파트너들이 다시 찾습니다
 success_stories,main_results_title,주요 성과
 success_stories,participating_creators_title,참여 크리에이터
