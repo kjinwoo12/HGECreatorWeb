@@ -1,8 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useDataStore } from '@/lib/dataStore';
 
-export default function LoadingScreen({ progress = 0, message = '데이터를 불러오는 중...' }) {
+export default function LoadingScreen({ message = '데이터를 불러오는 중...' }) {
+    const { siteContent } = useDataStore();
+    const loadingContent = siteContent?.loading || {};
     const [dots, setDots] = useState('');
 
     useEffect(() => {
@@ -26,8 +29,8 @@ export default function LoadingScreen({ progress = 0, message = '데이터를 �
             <div className="relative text-center text-white max-w-md px-6">
                 {/* 로고 */}
                 <div className="mb-8">
-                    <h1 className="text-4xl font-bold mb-2">HGE Creator</h1>
-                    <p className="text-indigo-200 text-lg">게임 크리에이터 플랫폼</p>
+                    <h1 className="text-4xl font-bold mb-2">{loadingContent.title || 'HGE Creator'}</h1>
+                    <p className="text-indigo-200 text-lg">{loadingContent.subtitle || '게임 크리에이터 플랫폼'}</p>
                 </div>
 
                 {/* 로딩 애니메이션 */}
@@ -46,26 +49,13 @@ export default function LoadingScreen({ progress = 0, message = '데이터를 �
                             </div>
                         </div>
                     </div>
-
-                    {/* 진행률 바 */}
-                    <div className="w-full bg-white/20 rounded-full h-2 mb-4">
-                        <div 
-                            className="bg-gradient-to-r from-yellow-400 to-pink-400 h-2 rounded-full transition-all duration-500 ease-out"
-                            style={{ width: `${Math.max(10, progress)}%` }}
-                        ></div>
-                    </div>
-
-                    {/* 진행률 텍스트 */}
-                    <div className="text-white/80 text-sm mb-2">
-                        {Math.round(progress)}% 완료
-                    </div>
                 </div>
 
                 {/* 로딩 메시지 */}
                 <div className="text-center">
                     <p className="text-lg mb-2">{message}{dots}</p>
                     <p className="text-indigo-200 text-sm">
-                        잠시만 기다려주세요
+                        {loadingContent.wait_message || '잠시만 기다려주세요'}
                     </p>
                 </div>
 

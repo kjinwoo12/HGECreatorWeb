@@ -17,6 +17,9 @@ class DataStore {
             error: null
         };
         this.listeners = [];
+        this.currentLanguage = 'ko';
+        this.languageCache = {}; // 언어별 캐시
+        this.isLanguageSet = false; // 언어가 설정되었는지 확인
     }
 
     // 상태 변경 리스너 등록
@@ -37,7 +40,34 @@ class DataStore {
         return this.data;
     }
 
-    // 모든 CSV 파일 로딩
+    // 초기 언어 설정 (LanguageContext에서 호출)
+    async setInitialLanguage(langCode) {
+        if (this.isLanguageSet) return;
+        
+        console.log(`🌐 초기 언어 설정: ${langCode}`);
+        this.currentLanguage = langCode;
+        this.isLanguageSet = true;
+        
+        // 해당 언어의 사이트 콘텐츠 로딩
+        await this.loadSiteContentForCurrentLanguage();
+    }
+
+    // 현재 언어에 맞는 사이트 콘텐츠 로딩
+    async loadSiteContentForCurrentLanguage() {
+        try {
+            const csvPath = this.getLanguageCsvPath(this.currentLanguage);
+            const languageContent = await this.loadSiteContentForLanguage(csvPath);
+            this.languageCache[this.currentLanguage] = languageContent;
+            this.data.siteContent = languageContent;
+            this.notify();
+        } catch (error) {
+            console.error(`❌ 언어 콘텐츠 로딩 실패: ${this.currentLanguage}`, error);
+            this.data.siteContent = mockSiteContent;
+            this.notify();
+        }
+    }
+
+    // 모든 CSV 파일 로딩 (언어별 콘텐츠는 별도 로딩)
     async loadAllData() {
         if (this.data.isLoaded || this.data.isLoading) {
             return this.data;
@@ -50,11 +80,10 @@ class DataStore {
         try {
             console.log('📊 CSV 데이터 로딩 시작...');
 
-            // 병렬로 모든 CSV 파일 로딩
-            const [creatorsData, successStoriesData, siteContentData] = await Promise.allSettled([
+            // 크리에이터와 성공 사례만 로딩 (언어별 콘텐츠는 별도)
+            const [creatorsData, successStoriesData] = await Promise.allSettled([
                 this.loadCreators(),
-                this.loadSuccessStories(),
-                this.loadSiteContent()
+                this.loadSuccessStories()
             ]);
 
             // 결과 처리
@@ -66,9 +95,10 @@ class DataStore {
                 ? successStoriesData.value 
                 : mockSuccessStories;
 
-            this.data.siteContent = siteContentData.status === 'fulfilled' 
-                ? siteContentData.value 
-                : mockSiteContent;
+            // 언어가 설정되어 있으면 해당 언어 콘텐츠 로딩
+            if (this.isLanguageSet) {
+                await this.loadSiteContentForCurrentLanguage();
+            }
 
             this.data.isLoaded = true;
             console.log('✅ 모든 CSV 데이터 로딩 완료!');
@@ -80,7 +110,7 @@ class DataStore {
             // 에러 시 기본 데이터 사용
             this.data.creators = sampleCreators;
             this.data.successStories = mockSuccessStories;
-            this.data.siteContent = mockSiteContent;
+            this.data.siteContent = this.languageCache[this.currentLanguage] || mockSiteContent;
             this.data.isLoaded = true;
         } finally {
             this.data.isLoading = false;
@@ -102,44 +132,43 @@ class DataStore {
     }
 
     async loadCreators() {
-        const csvData = await this.loadCsvData('/data/creators.csv');
+        const csvPath = this.getLanguageCsvPath(this.currentLanguage, 'creators.csv');
+        const csvData = await this.loadCsvData(csvPath);
         return csvData.length > 0 ? csvData : sampleCreators;
     }
 
     async loadSuccessStories() {
-        const csvData = await this.loadCsvData('/data/success-stories.csv');
-        return csvData.length > 0 ? csvData : mockSuccessStories;
-    }
-
-    async loadSiteContent() {
-        const csvData = await this.loadCsvData('/data/site-content.csv');
+        // 언어별 CSV 파일 경로 설정
+        const csvPaths = {
+            'ko': '/data/success-stories.csv',
+            'en': '/data/en/success-stories.csv',
+            'jp': '/data/jp/success-stories.csv'
+        };
         
-        if (csvData.length === 0) {
-            return mockSiteContent;
+        const csvPath = csvPaths[this.currentLanguage] || csvPaths['ko'];
+        const csvData = await this.loadCsvData(csvPath);
+        
+        if (csvData.length > 0) {
+            // CSV 데이터를 성공 사례 객체로 변환
+            return csvData.map(row => ({
+                id: parseInt(row.id),
+                title: row.title,
+                gameTitle: row.gameTitle,
+                company: row.company,
+                collaborationType: row.collaborationType,
+                description: row.description,
+                results: Array.isArray(row.results) ? row.results : (row.results ? row.results.split(';') : []),
+                creators: Array.isArray(row.creators) ? row.creators : (row.creators ? row.creators.split(';') : []),
+                image: row.image,
+                date: row.date,
+                testimonial: row.testimonial,
+                clientName: row.clientName
+            }));
         }
         
-        // CSV 데이터를 사이트 콘텐츠 형식으로 변환
-        const content = { ...mockSiteContent };
-        csvData.forEach(row => {
-            if (row.section && row.key && row.value) {
-                if (!content[row.section]) {
-                    content[row.section] = {};
-                }
-                
-                // statistics 섹션은 특별 처리 (value와 label 구조)
-                if (row.section === 'statistics' && row.label) {
-                    content[row.section][row.key] = {
-                        value: row.value,
-                        label: row.label
-                    };
-                } else {
-                    content[row.section][row.key] = row.value;
-                }
-            }
-        });
-        
-        return content;
+        return mockSuccessStories;
     }
+
 
     // 개별 데이터 접근자
     getCreators() {
@@ -165,10 +194,83 @@ class DataStore {
     getError() {
         return this.data.error;
     }
+
+    // 언어 변경 메서드
+    async changeLanguage(langCode) {
+        if (this.currentLanguage === langCode) return;
+
+        this.currentLanguage = langCode;
+        
+        // 캐시에서 확인
+        if (this.languageCache[langCode]) {
+            this.data.siteContent = this.languageCache[langCode];
+            this.notify();
+            return;
+        }
+
+        // 새로운 언어 데이터 로딩
+        await this.loadSiteContentForCurrentLanguage();
+    }
+
+    // 언어별 CSV 경로 반환
+    getLanguageCsvPath(langCode, filename = 'site-content.csv') {
+        const languagePaths = {
+            ko: `/data/${filename}`,
+            en: `/data/en/${filename}`,
+            jp: `/data/jp/${filename}`
+        };
+        return languagePaths[langCode] || languagePaths.ko;
+    }
+
+    // 특정 언어의 사이트 콘텐츠 로딩
+    async loadSiteContentForLanguage(csvPath) {
+        try {
+            const csvData = await fetchCSV(csvPath);
+            
+            if (csvData.length === 0) {
+                return mockSiteContent;
+            }
+
+            // CSV 데이터를 사이트 콘텐츠 형식으로 변환
+            const content = { ...mockSiteContent };
+            csvData.forEach(row => {
+                if (row.section && row.key && row.value) {
+                    if (!content[row.section]) {
+                        content[row.section] = {};
+                    }
+                    
+                    // statistics 섹션은 특별 처리 (value와 label 구조)
+                    if (row.section === 'statistics' && row.label) {
+                        content[row.section][row.key] = {
+                            value: row.value,
+                            label: row.label
+                        };
+                    } else {
+                        content[row.section][row.key] = row.value;
+                    }
+                }
+            });
+
+            return content;
+        } catch (error) {
+            console.warn(`⚠️ 언어별 CSV 로딩 실패: ${csvPath}:`, error.message);
+            return mockSiteContent;
+        }
+    }
+
+    // 현재 언어 반환
+    getCurrentLanguage() {
+        return this.currentLanguage;
+    }
 }
 
 // 싱글톤 인스턴스
 export const dataStore = new DataStore();
+
+// 글로벌 접근을 위해 window 객체에 등록 (언어 컨텍스트에서 사용)
+if (typeof window !== 'undefined') {
+    window.dataStore = dataStore;
+}
 
 // React Hook
 export function useDataStore() {
@@ -184,6 +286,8 @@ export function useDataStore() {
         loadAllData: () => dataStore.loadAllData(),
         getCreators: () => dataStore.getCreators(),
         getSuccessStories: () => dataStore.getSuccessStories(),
-        getSiteContent: () => dataStore.getSiteContent()
+        getSiteContent: () => dataStore.getSiteContent(),
+        changeLanguage: (langCode) => dataStore.changeLanguage(langCode),
+        getCurrentLanguage: () => dataStore.getCurrentLanguage()
     };
 }

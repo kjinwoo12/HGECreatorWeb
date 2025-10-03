@@ -32,3 +32,13 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* 스크롤바 숨기기 */
+.custom-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

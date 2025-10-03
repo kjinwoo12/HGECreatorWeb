@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useDataStore } from '@/lib/dataStore';
 
 export default function ContactForm() {
+    const { siteContent } = useDataStore();
+    const contactContent = siteContent?.contact || {};
     const [formData, setFormData] = useState({
         companyName: '',
         contactName: '',
@@ -21,26 +24,26 @@ export default function ContactForm() {
     const [submitStatus, setSubmitStatus] = useState('idle');
 
     const collaborationTypes = [
-        { id: 'streaming', label: '스트리밍 협업', description: '게임 플레이 방송, 리뷰 영상' },
-        { id: 'illustration', label: '일러스트', description: '팬아트, 프로모션 이미지' },
-        { id: 'voice-acting', label: '성우', description: '캐릭터 더빙, 나레이션' },
-        { id: 'event-coordination', label: '이벤트 기획', description: '런칭 이벤트, 컨벤션 참여' },
-        { id: 'content-creation', label: '콘텐츠 제작', description: '영상 콘텐츠, 소셜미디어' },
-        { id: 'marketing', label: '마케팅', description: '홍보 전략, 커뮤니티 관리' }
+        { id: 'streaming', label: contactContent.streaming_label || 'Error', description: contactContent.streaming_desc || 'Error' },
+        { id: 'illustration', label: contactContent.illustration_label || 'Error', description: contactContent.illustration_desc || 'Error' },
+        { id: 'voice-acting', label: contactContent.voice_acting_label || 'Error', description: contactContent.voice_acting_desc || 'Error' },
+        { id: 'event-coordination', label: contactContent.event_coordination_label || 'Error', description: contactContent.event_coordination_desc || 'Error' },
+        { id: 'content-creation', label: contactContent.content_creation_label || 'Error', description: contactContent.content_creation_desc || 'Error' },
+        { id: 'marketing', label: contactContent.marketing_label || 'Error', description: contactContent.marketing_desc || 'Error' }
     ];
 
     const gameGenres = [
         'RPG', 'Action', 'Adventure', 'Puzzle', 'Strategy', 'Simulation',
-        'Sports', 'Racing', 'Shooter', 'Platform', 'Fighting', 'Horror', '기타'
+        'Sports', 'Racing', 'Shooter', 'Platform', 'Fighting', 'Horror', contactContent.genre_other || 'Error'
     ];
 
     const budgetRanges = [
-        '100만원 미만',
-        '100만원 - 300만원',
-        '300만원 - 500만원',
-        '500만원 - 1,000만원',
-        '1,000만원 이상',
-        '협의 후 결정'
+        contactContent.budget_under_1m || 'Error',
+        contactContent.budget_1m_3m || 'Error',
+        contactContent.budget_3m_5m || 'Error',
+        contactContent.budget_5m_10m || 'Error',
+        contactContent.budget_over_10m || 'Error',
+        contactContent.budget_negotiate || 'Error'
     ];
 
     const handleInputChange = (e) => {
@@ -102,17 +105,16 @@ export default function ContactForm() {
                     </svg>
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
-                    협업 신청이 완료되었습니다!
+                    {contactContent.success_title || '협업 신청이 완료되었습니다!'}
                 </h3>
                 <p className="text-gray-600 mb-6">
-                    2-3일 내에 전담 매니저가 연락드릴 예정입니다.
-                    더 궁금한 사항이 있으시면 언제든 문의해주세요.
+                    {contactContent.success_message || '2-3일 내에 전담 매니저가 연락드릴 예정입니다. 더 궁금한 사항이 있으시면 언제든 문의해주세요.'}
                 </p>
                 <button
                     onClick={() => setSubmitStatus('idle')}
                     className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-indigo-100 hover:bg-indigo-200 transition-colors"
                 >
-                    새로운 신청서 작성
+                    {contactContent.new_application || '새로운 신청서 작성'}
                 </button>
             </div>
         );
@@ -123,11 +125,11 @@ export default function ContactForm() {
             <div className="space-y-6">
                 {/* 기본 정보 */}
                 <div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">기본 정보</h3>
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">{contactContent.basic_info_title || 'Error'}</h3>
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         <div>
                             <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">
-                                회사명 *
+                                {contactContent.company_name || 'Error'} *
                             </label>
                             <input
                                 type="text"
@@ -142,7 +144,7 @@ export default function ContactForm() {
 
                         <div>
                             <label htmlFor="contactName" className="block text-sm font-medium text-gray-700">
-                                담당자명 *
+                                {contactContent.contact_name || '담당자명'} *
                             </label>
                             <input
                                 type="text"
@@ -157,7 +159,7 @@ export default function ContactForm() {
 
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                                이메일 *
+                                {contactContent.email || '이메일'} *
                             </label>
                             <input
                                 type="email"
@@ -172,7 +174,7 @@ export default function ContactForm() {
 
                         <div>
                             <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                                연락처 *
+                                {contactContent.phone || '연락처'} *
                             </label>
                             <input
                                 type="tel"
@@ -189,11 +191,11 @@ export default function ContactForm() {
 
                 {/* 게임 정보 */}
                 <div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">게임 정보</h3>
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">{contactContent.game_info_title || 'Error'}</h3>
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         <div>
                             <label htmlFor="gameTitle" className="block text-sm font-medium text-gray-700">
-                                게임 제목 *
+                                {contactContent.game_title || 'Error'} *
                             </label>
                             <input
                                 type="text"
@@ -208,7 +210,7 @@ export default function ContactForm() {
 
                         <div>
                             <label htmlFor="gameGenre" className="block text-sm font-medium text-gray-700">
-                                게임 장르 *
+                                {contactContent.game_genre || 'Error'} *
                             </label>
                             <select
                                 name="gameGenre"
@@ -218,7 +220,7 @@ export default function ContactForm() {
                                 onChange={handleInputChange}
                                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             >
-                                <option value="">장르를 선택하세요</option>
+                                <option value="">{contactContent.select_genre || '장르를 선택하세요'}</option>
                                 {gameGenres.map((genre) => (
                                     <option key={genre} value={genre}>{genre}</option>
                                 ))}
@@ -227,7 +229,7 @@ export default function ContactForm() {
 
                         <div>
                             <label htmlFor="targetLaunch" className="block text-sm font-medium text-gray-700">
-                                예상 출시일
+                                {contactContent.target_launch || '예상 출시일'}
                             </label>
                             <input
                                 type="month"
@@ -241,7 +243,7 @@ export default function ContactForm() {
 
                         <div>
                             <label htmlFor="budget" className="block text-sm font-medium text-gray-700">
-                                협업 예산
+                                {contactContent.budget || 'Error'}
                             </label>
                             <select
                                 name="budget"
@@ -250,7 +252,7 @@ export default function ContactForm() {
                                 onChange={handleInputChange}
                                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             >
-                                <option value="">예산 범위를 선택하세요</option>
+                                <option value="">{contactContent.select_budget || '예산 범위를 선택하세요'}</option>
                                 {budgetRanges.map((range) => (
                                     <option key={range} value={range}>{range}</option>
                                 ))}
@@ -261,7 +263,7 @@ export default function ContactForm() {
 
                 {/* 협업 유형 */}
                 <div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">원하는 협업 유형 *</h3>
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">{contactContent.collaboration_types_title || '원하는 협업 유형'} *</h3>
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         {collaborationTypes.map((type) => (
                             <div key={type.id} className="relative">
@@ -285,7 +287,7 @@ export default function ContactForm() {
                 {/* 상세 설명 */}
                 <div>
                     <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-                        게임 및 협업 상세 설명 *
+                        {contactContent.description_label || '게임 및 협업 상세 설명'} *
                     </label>
                     <textarea
                         name="description"
@@ -294,7 +296,7 @@ export default function ContactForm() {
                         required
                         value={formData.description}
                         onChange={handleInputChange}
-                        placeholder="게임의 특징, 타겟 오디언스, 원하는 협업 방향 등을 자세히 설명해주세요."
+                        placeholder={contactContent.description_placeholder || "게임의 특징, 타겟 오디언스, 원하는 협업 방향 등을 자세히 설명해주세요."}
                         className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                     />
                 </div>
@@ -302,7 +304,7 @@ export default function ContactForm() {
                 {/* 추가 정보 */}
                 <div>
                     <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-700">
-                        추가 요청사항
+                        {contactContent.additional_info_label || '추가 요청사항'}
                     </label>
                     <textarea
                         name="additionalInfo"
@@ -310,7 +312,7 @@ export default function ContactForm() {
                         rows={3}
                         value={formData.additionalInfo}
                         onChange={handleInputChange}
-                        placeholder="특별한 요청사항이나 질문이 있다면 작성해주세요."
+                        placeholder={contactContent.additional_info_placeholder || "특별한 요청사항이나 질문이 있다면 작성해주세요."}
                         className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                     />
                 </div>
@@ -328,10 +330,10 @@ export default function ContactForm() {
                                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
-                                처리 중...
+                                {contactContent.processing || '처리 중...'}
                             </>
                         ) : (
-                            '협업 신청하기'
+                            contactContent.submit_button || '협업 신청하기'
                         )}
                     </button>
                 </div>
@@ -344,10 +346,10 @@ export default function ContactForm() {
                             </svg>
                             <div className="ml-3">
                                 <h3 className="text-sm font-medium text-red-800">
-                                    신청 처리 중 오류가 발생했습니다.
+                                    {contactContent.error_title || '신청 처리 중 오류가 발생했습니다.'}
                                 </h3>
                                 <div className="mt-2 text-sm text-red-700">
-                                    <p>잠시 후 다시 시도하거나 직접 연락해주세요.</p>
+                                    <p>{contactContent.error_message || '잠시 후 다시 시도하거나 직접 연락해주세요.'}</p>
                                 </div>
                             </div>
                         </div>

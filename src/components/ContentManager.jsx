@@ -1,22 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { getSiteContent } from '@/lib/contentService';
+import { useDataStore } from '@/lib/dataStore';
 
-export default function ContentManager({ onContentUpdate }) {
+export default function ContentManager() {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const { loadAllData } = useDataStore();
 
     const handleRefreshContent = async () => {
         setIsLoading(true);
 
         try {
-            const content = await getSiteContent();
-
-            if (onContentUpdate) {
-                onContentUpdate(content);
-            }
-
+            // useDataStore를 통해 모든 데이터 다시 로딩
+            await loadAllData();
             alert('콘텐츠가 새로고침되었습니다.');
         } catch (error) {
             console.error('콘텐츠 새로고침 실패:', error);

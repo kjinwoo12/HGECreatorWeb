@@ -19,6 +19,14 @@ export function parseCSV(csvText) {
                 obj[header] = value.toLowerCase() === 'true';
             } else if (header === 'specialties' || header === 'tags') {
                 obj[header] = value.split(';').map(item => item.trim()).filter(item => item);
+            } else if (['youtube', 'twitch', 'twitter', 'instagram'].includes(header)) {
+                // 소셜 링크는 socialLinks 객체로 그룹화
+                if (!obj.socialLinks) {
+                    obj.socialLinks = {};
+                }
+                if (value.trim()) {
+                    obj.socialLinks[header] = value;
+                }
             } else {
                 obj[header] = value;
             }

@@ -1,9 +1,45 @@
 'use client';
 
 import { useState } from 'react';
-import { creatorCategories } from '@/data/creators';
+import { useDataStore } from '@/lib/dataStore';
 
 export default function CreatorFilter({ onFilterChange, totalCount, filteredCount }) {
+    const { siteContent } = useDataStore();
+    const creatorsContent = siteContent?.creators || {};
+    
+    // 카테고리 데이터를 동적으로 생성
+    const creatorCategories = [
+        {
+            value: 'streaming',
+            label: siteContent?.categories?.streaming_label || 'Error',
+            description: siteContent?.categories?.streaming_description || 'Error'
+        },
+        {
+            value: 'illustration',
+            label: siteContent?.categories?.illustration_label || 'Error',
+            description: siteContent?.categories?.illustration_description || 'Error'
+        },
+        {
+            value: 'voice-acting',
+            label: siteContent?.categories?.voice_acting_label || 'Error',
+            description: siteContent?.categories?.voice_acting_description || 'Error'
+        },
+        {
+            value: 'event-coordination',
+            label: siteContent?.categories?.event_coordination_label || 'Error',
+            description: siteContent?.categories?.event_coordination_description || 'Error'
+        },
+        {
+            value: 'content-creation',
+            label: siteContent?.categories?.content_creation_label || 'Error',
+            description: siteContent?.categories?.content_creation_description || 'Error'
+        },
+        {
+            value: 'marketing',
+            label: siteContent?.categories?.marketing_label || 'Error',
+            description: siteContent?.categories?.marketing_description || 'Error'
+        }
+    ];
     const [filter, setFilter] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -39,7 +75,7 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
                 {/* 검색 */}
                 <div className="flex-1 max-w-md">
                     <label htmlFor="search" className="sr-only">
-                        크리에이터 검색
+                        {creatorsContent.search_label || '크리에이터 검색'}
                     </label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -52,7 +88,7 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
                             type="text"
                             value={searchTerm}
                             onChange={(e) => handleSearchChange(e.target.value)}
-                            placeholder="크리에이터 이름이나 전문 분야로 검색..."
+                            placeholder={creatorsContent.search_placeholder || "크리에이터 이름이나 전문 분야로 검색..."}
                             className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
                         />
                     </div>
@@ -63,7 +99,7 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
                     {/* 카테고리 필터 */}
                     <div>
                         <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
-                            카테고리
+                            {creatorsContent.category_label || '카테고리'}
                         </label>
                         <select
                             id="category"
@@ -71,7 +107,7 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
                             onChange={(e) => handleCategoryChange(e.target.value || undefined)}
                             className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         >
-                            <option value="">전체</option>
+                            <option value="">{creatorsContent.category_all || '전체'}</option>
                             {creatorCategories.map((category) => (
                                 <option key={category.value} value={category.value}>
                                     {category.label}
@@ -83,7 +119,7 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
                     {/* 가용성 필터 */}
                     <div>
                         <label htmlFor="availability" className="block text-sm font-medium text-gray-700 mb-1">
-                            협업 가능성
+                            {creatorsContent.availability_label || '협업 가능성'}
                         </label>
                         <select
                             id="availability"
@@ -94,9 +130,9 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
                             }}
                             className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         >
-                            <option value="">전체</option>
-                            <option value="true">협업 가능</option>
-                            <option value="false">협업 불가</option>
+                            <option value="">{creatorsContent.category_all || '전체'}</option>
+                            <option value="true">{creatorsContent.availability_available || '협업 가능'}</option>
+                            <option value="false">{creatorsContent.availability_unavailable || '협업 불가'}</option>
                         </select>
                     </div>
 
@@ -106,7 +142,7 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
                             onClick={clearFilters}
                             className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                            초기화
+                            {creatorsContent.reset_button || '초기화'}
                         </button>
                     </div>
                 </div>
@@ -114,7 +150,7 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
 
             {/* 결과 카운트 */}
             <div className="mt-4 text-sm text-gray-600">
-                총 {totalCount}명 중 {filteredCount}명의 크리에이터가 검색되었습니다.
+                {creatorsContent.results_count?.replace('{total}', totalCount).replace('{filtered}', filteredCount) || `총 ${totalCount}명 중 ${filteredCount}명의 크리에이터가 검색되었습니다.`}
             </div>
         </div>
     );

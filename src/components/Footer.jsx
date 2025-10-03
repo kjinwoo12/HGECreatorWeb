@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import { useDataStore } from '@/lib/dataStore';
 
 export default function Footer() {
+    const { siteContent } = useDataStore();
+    const content = siteContent;
     return (
         <footer className="bg-gray-900 text-white">
             <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -8,11 +11,10 @@ export default function Footer() {
                     {/* 회사 정보 */}
                     <div className="col-span-1 md:col-span-2">
                         <div className="text-2xl font-bold text-white mb-4">
-                            HGE Creator
+                            {content.footer?.logo || 'HGE Creator'}
                         </div>
                         <p className="text-gray-300 mb-4 max-w-md">
-                            인디 게임 개발자와 260명의 다양한 크리에이터를 연결하여
-                            게임 업계의 성장과 발전에 기여합니다.
+                            {content.footer?.description || '인디 게임 개발자와 260명의 다양한 크리에이터를 연결하여 게임 업계의 성장과 발전에 기여합니다.'}
                         </p>
                         <div className="flex space-x-4">
                             <a href="#" className="text-gray-300 hover:text-white transition-colors">
@@ -38,22 +40,22 @@ export default function Footer() {
 
                     {/* 빠른 링크 */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">빠른 링크</h3>
+                        <h3 className="text-lg font-semibold mb-4">{content.footer?.quick_links_title || '빠른 링크'}</h3>
                         <ul className="space-y-2">
-                            <li><Link href="/creators" className="text-gray-300 hover:text-white transition-colors">크리에이터</Link></li>
-                            <li><Link href="/collaboration" className="text-gray-300 hover:text-white transition-colors">협업 프로세스</Link></li>
-                            <li><Link href="/success-stories" className="text-gray-300 hover:text-white transition-colors">성공 사례</Link></li>
-                            <li><Link href="/participate" className="text-gray-300 hover:text-white transition-colors">참여 방법</Link></li>
+                            <li><Link href="/creators" className="text-gray-300 hover:text-white transition-colors">{content.footer?.quick_link_creators || '크리에이터'}</Link></li>
+                            <li><Link href="/collaboration" className="text-gray-300 hover:text-white transition-colors">{content.footer?.quick_link_collaboration || '협업 프로세스'}</Link></li>
+                            <li><Link href="/success-stories" className="text-gray-300 hover:text-white transition-colors">{content.footer?.quick_link_success_stories || '성공 사례'}</Link></li>
+                            <li><Link href="/participate" className="text-gray-300 hover:text-white transition-colors">{content.footer?.quick_link_participate || '참여 방법'}</Link></li>
                         </ul>
                     </div>
 
                     {/* 연락처 */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">연락처</h3>
+                        <h3 className="text-lg font-semibold mb-4">{content.footer?.contact_title || '연락처'}</h3>
                         <div className="space-y-2 text-gray-300">
-                            <p>이메일: contact@hgecreator.com</p>
-                            <p>전화: 02-1234-5678</p>
-                            <p>주소: 서울시 강남구 테헤란로 123</p>
+                            <p>{content.footer?.contact_email || '이메일: contact@hgecreator.com'}</p>
+                            <p>{content.footer?.contact_phone || '전화: 02-1234-5678'}</p>
+                            <p>{content.footer?.contact_address || '주소: 서울시 강남구 테헤란로 123'}</p>
                         </div>
                     </div>
                 </div>
@@ -62,14 +64,14 @@ export default function Footer() {
                 <div className="border-t border-gray-800 pt-8 mt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <p className="text-gray-300 text-sm">
-                            © 2024 HGE Creator. All rights reserved.
+                            {content.footer?.copyright || '© 2024 HGE Creator. All rights reserved.'}
                         </p>
                         <div className="flex space-x-4 mt-4 md:mt-0">
                             <Link href="#" className="text-gray-300 hover:text-white text-sm transition-colors">
-                                개인정보처리방침
+                                {content.footer?.privacy_policy || '개인정보처리방침'}
                             </Link>
                             <Link href="#" className="text-gray-300 hover:text-white text-sm transition-colors">
-                                이용약관
+                                {content.footer?.terms_of_service || '이용약관'}
                             </Link>
                         </div>
                     </div>
