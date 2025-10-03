@@ -57,9 +57,37 @@ collaboration,cta_subtitle,We will lead your game to success through our profess
 collaboration,cta_button,Apply for Collaboration
 collaboration,step1_title,Project Registration
 collaboration,step1_description,Register your game information and required creator types.
-collaboration,step1_detail1,Provide basic information such as game genre, target audience, and launch schedule
+collaboration,step1_detail1,Provide basic information such as game genre, target audience, release schedule
 collaboration,step1_detail2,Select required collaboration types (streaming, illustration, voice acting, events, etc.)
 collaboration,step1_detail3,Set budget range and collaboration period
+collaboration,step2_title,Creator Matching
+collaboration,step2_description,We recommend creators suitable for your project.
+collaboration,step2_detail1,AI-based matching system for optimal creator selection
+collaboration,step2_detail2,Comprehensive consideration of portfolio, experience, and availability
+collaboration,step2_detail3,Provide 3-5 candidate creator profiles
+collaboration,step3_title,Collaboration Discussion
+collaboration,step3_description,Discuss specific collaboration details with selected creators.
+collaboration,step3_detail1,Discuss collaboration scope, schedule, compensation, and other details
+collaboration,step3_detail2,Contract drafting and legal review support
+collaboration,step3_detail3,Project kickoff meeting arrangement
+collaboration,step4_title,Collaboration Progress
+collaboration,step4_description,Dedicated managers manage and support the collaboration process.
+collaboration,step4_detail1,Regular progress checks and reporting
+collaboration,step4_detail2,Prompt mediation and resolution when issues arise
+collaboration,step4_detail3,Quality management and feedback coordination
+collaboration,step5_title,Result Evaluation
+collaboration,step5_description,Evaluate collaboration results and collect feedback for future collaborations.
+collaboration,step5_detail1,Collaboration performance measurement and analysis
+collaboration,step5_detail2,Collect bidirectional feedback and derive improvement points
+collaboration,step5_detail3,Success case registration and promotion support
+collaboration,benefit1_title,Subculture Game Enhancement
+collaboration,benefit1_description,Maximize the subculture appeal of games through collaboration with professional creators.
+collaboration,benefit2_title,Increased Promotion Effectiveness
+collaboration,benefit2_description,Natural game promotion is possible by utilizing creators' fan base.
+collaboration,benefit3_title,Convention Connection
+collaboration,benefit3_description,Provide offline promotion opportunities connected to domestic and international game conventions.
+collaboration,benefit4_title,Cosplay Events
+collaboration,benefit4_description,Support fan-participatory marketing through game character cosplay.
 collaboration,step2_title,Creator Matching
 collaboration,step2_description,We recommend creators suitable for your project.
 collaboration,step2_detail1,AI-based matching system selects optimal creators
@@ -146,6 +174,10 @@ participate,form_subtitle,Please fill out the form below to apply for collaborat
 participate,faq_title,Frequently Asked Questions
 participate,contact_title,Have More Questions?
 participate,contact_subtitle,Contact us anytime. Our professional consultants will help you.
+participate,application_title,Collaboration Application Form
+participate,application_description,You can easily apply for collaboration through the Google form.
+participate,application_button,Apply for Collaboration
+participate,application_note,The Google form will open in a new window.
 loading,title,HGE Creator
 loading,subtitle,Game Creator Platform
 loading,progress_complete,Complete
