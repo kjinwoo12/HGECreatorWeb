@@ -4,27 +4,27 @@ home,subtitle,HGE Creator Network
 home,description,A platform connecting indie game developers with creators. Let's grow together and build a better gaming culture.
 home,primary_button,Find Creators
 home,secondary_button,Start Collaboration
-statistics,creators_value,150+
-statistics,creators_label,Registered Creators
-statistics,projects_value,80+
-statistics,projects_label,Successful Collaborations
-statistics,companies_value,45+
-statistics,companies_label,Partner Game Companies
-coreValues,title,Our Core Values
-coreValues,subtitle,The core values that HGE Creator pursues.
-coreValues,value1_title,Mutual Growth
-coreValues,value1_description,Create an environment where developers and creators can grow together
-coreValues,value2_title,Creative Collaboration
-coreValues,value2_description,Support creative collaboration among experts from various fields
-coreValues,value3_title,Transparent Communication
-coreValues,value3_description,Build trustworthy relationships through clear and transparent communication
-coreValues,value4_title,Sustainable Ecosystem
-coreValues,value4_description,Build a long-term sustainable game creator ecosystem
-categories,title,Creator Categories
-categories,subtitle,Meet professional creators from various fields.
-categories,linkText,Learn More
-cta,title,Start Now
-cta,description,Lead your game to success with HGE Creator.
+home,statistics_creators_value,150+
+home,statistics_creators_label,Registered Creators
+home,statistics_projects_value,80+
+home,statistics_projects_label,Successful Collaborations
+home,statistics_companies_value,45+
+home,statistics_companies_label,Partner Game Companies
+home,core_values_title,Our Core Values
+home,core_values_subtitle,The core values that HGE Creator pursues.
+home,core_values_value1_title,Mutual Growth
+home,core_values_value1_description,Create an environment where developers and creators can grow together
+home,core_values_value2_title,Creative Collaboration
+home,core_values_value2_description,Support creative collaboration among experts from various fields
+home,core_values_value3_title,Transparent Communication
+home,core_values_value3_description,Build trustworthy relationships through clear and transparent communication
+home,core_values_value4_title,Sustainable Ecosystem
+home,core_values_value4_description,Build a long-term sustainable game creator ecosystem
+home,categories_title,Creator Categories
+home,categories_subtitle,Meet professional creators from various fields.
+home,categories_link_text,Learn More
+home,cta_title,Start Now
+home,cta_description,Lead your game to success with HGE Creator.
 header,logo,HGE Creator
 header,nav_home,Home
 header,nav_creators,Creators

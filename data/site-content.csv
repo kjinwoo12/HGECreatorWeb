@@ -4,27 +4,27 @@ home,subtitle,HGE Creator Network
 home,description,인디 게임 개발자와 크리에이터를 연결하는 플랫폼입니다. 함께 성장하고 더 나은 게임 문화를 만들어가세요.
 home,primary_button,크리에이터 찾기
 home,secondary_button,협업 시작하기
-statistics,creators_value,150+
-statistics,creators_label,등록된 크리에이터
-statistics,projects_value,80+
-statistics,projects_label,성공한 협업 프로젝트
-statistics,companies_value,45+
-statistics,companies_label,파트너 게임 회사
-coreValues,title,우리의 핵심 가치
-coreValues,subtitle,HGE Creator가 추구하는 가치를 소개합니다.
-coreValues,value1_title,상호 성장
-coreValues,value1_description,개발자와 크리에이터가 함께 성장할 수 있는 환경을 만듭니다
-coreValues,value2_title,창의적 협업
-coreValues,value2_description,다양한 분야의 전문가들이 창의적으로 협업할 수 있도록 지원합니다
-coreValues,value3_title,투명한 소통
-coreValues,value3_description,명확하고 투명한 소통을 통해 신뢰할 수 있는 관계를 구축합니다
-coreValues,value4_title,지속가능한 생태계
-coreValues,value4_description,장기적으로 지속가능한 게임 크리에이터 생태계를 구축합니다
-categories,title,크리에이터 카테고리
-categories,subtitle,다양한 분야의 전문 크리에이터들을 만나보세요.
-categories,linkText,자세히 보기
-cta,title,지금 바로 시작하세요
-cta,description,HGE Creator와 함께 여러분의 게임을 성공으로 이끌어보세요.
+home,statistics_creators_value,150+
+home,statistics_creators_label,등록된 크리에이터
+home,statistics_projects_value,80+
+home,statistics_projects_label,성공한 협업 프로젝트
+home,statistics_companies_value,45+
+home,statistics_companies_label,파트너 게임 회사
+home,core_values_title,우리의 핵심 가치
+home,core_values_subtitle,HGE Creator가 추구하는 가치를 소개합니다.
+home,core_values_value1_title,상호 성장
+home,core_values_value1_description,개발자와 크리에이터가 함께 성장할 수 있는 환경을 만듭니다
+home,core_values_value2_title,창의적 협업
+home,core_values_value2_description,다양한 분야의 전문가들이 창의적으로 협업할 수 있도록 지원합니다
+home,core_values_value3_title,투명한 소통
+home,core_values_value3_description,명확하고 투명한 소통을 통해 신뢰할 수 있는 관계를 구축합니다
+home,core_values_value4_title,지속가능한 생태계
+home,core_values_value4_description,장기적으로 지속가능한 게임 크리에이터 생태계를 구축합니다
+home,categories_title,크리에이터 카테고리
+home,categories_subtitle,다양한 분야의 전문 크리에이터들을 만나보세요.
+home,categories_link_text,자세히 보기
+home,cta_title,지금 바로 시작하세요
+home,cta_description,HGE Creator와 함께 여러분의 게임을 성공으로 이끌어보세요.
 header,logo,HGE Creator
 header,nav_home,홈
 header,nav_creators,크리에이터
