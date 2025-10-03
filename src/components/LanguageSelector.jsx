@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { getImagePath } from '@/lib/pathUtils';
 
 export default function LanguageSelector() {
     const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +37,7 @@ export default function LanguageSelector() {
                 title="언어 선택"
             >
                 {/* 언어 아이콘 */}
-                <img src="/globe.svg" alt="언어 아이콘" className="w-5 h-5" />
+                <img src={getImagePath("/globe.svg")} alt="언어 아이콘" className="w-5 h-5" />
                 
                 {/* 드롭다운 화살표 */}
                 <svg 

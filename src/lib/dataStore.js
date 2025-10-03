@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { fetchCSV } from './csvParser';
+import { getCsvPath } from './pathUtils';
 import { mockSiteContent } from '@/data/siteContent';
 import { sampleCreators } from '@/data/creators';
 import { mockSuccessStories } from '@/data/successStories';
@@ -139,13 +140,7 @@ class DataStore {
 
     async loadSuccessStories() {
         // 언어별 CSV 파일 경로 설정
-        const csvPaths = {
-            'ko': '/data/success-stories.csv',
-            'en': '/data/en/success-stories.csv',
-            'jp': '/data/jp/success-stories.csv'
-        };
-        
-        const csvPath = csvPaths[this.currentLanguage] || csvPaths['ko'];
+        const csvPath = getCsvPath('success-stories.csv', this.currentLanguage);
         const csvData = await this.loadCsvData(csvPath);
         
         if (csvData.length > 0) {

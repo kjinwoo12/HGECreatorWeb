@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
+import { getCsvPath } from '@/lib/pathUtils';
 
 const LanguageContext = createContext();
 
@@ -9,19 +10,19 @@ export const languages = {
     code: 'ko',
     name: '한국어',
     flag: '🇰🇷',
-    csvPath: '/data/site-content.csv'
+    csvPath: getCsvPath('site-content.csv', 'ko')
   },
   en: {
     code: 'en', 
     name: 'English',
     flag: '🇺🇸',
-    csvPath: '/data/en/site-content.csv'
+    csvPath: getCsvPath('site-content.csv', 'en')
   },
   jp: {
     code: 'jp',
     name: '日本語', 
     flag: '🇯🇵',
-    csvPath: '/data/jp/site-content.csv'
+    csvPath: getCsvPath('site-content.csv', 'jp')
   }
 };
 

@@ -1,4 +1,5 @@
 import { parseCSV } from './csvParser';
+import { getCsvPath } from './pathUtils';
 
 class SuccessStoriesService {
     constructor() {
@@ -11,12 +12,7 @@ class SuccessStoriesService {
     }
 
     getCsvPath() {
-        const paths = {
-            'ko': '/data/success-stories.csv',
-            'en': '/data/en/success-stories.csv',
-            'jp': '/data/jp/success-stories.csv'
-        };
-        return paths[this.currentLanguage] || paths['ko'];
+        return getCsvPath('success-stories.csv', this.currentLanguage);
     }
 
     async getAllSuccessStories() {
