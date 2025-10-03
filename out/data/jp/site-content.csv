@@ -4,27 +4,27 @@ home,subtitle,HGE Creator Network
 home,description,インディーゲーム開発者とクリエイターをつなぐプラットフォームです。一緒に成長し、より良いゲーム文化を築いていきましょう。
 home,primary_button,クリエイターを探す
 home,secondary_button,コラボレーション開始
-statistics,creators_value,150+
-statistics,creators_label,登録クリエイター
-statistics,projects_value,80+
-statistics,projects_label,成功したコラボレーション
-statistics,companies_value,45+
-statistics,companies_label,パートナーゲーム会社
-coreValues,title,私たちの核となる価値
-coreValues,subtitle,HGE Creatorが追求する核となる価値観です。
-coreValues,value1_title,相互成長
-coreValues,value1_description,開発者とクリエイターが共に成長できる環境を作ります
-coreValues,value2_title,創造的なコラボレーション
-coreValues,value2_description,様々な分野の専門家が創造的にコラボレーションできるよう支援します
-coreValues,value3_title,透明なコミュニケーション
-coreValues,value3_description,明確で透明なコミュニケーションを通じて信頼できる関係を築きます
-coreValues,value4_title,持続可能なエコシステム
-coreValues,value4_description,長期的に持続可能なゲームクリエイターエコシステムを構築します
-categories,title,クリエイターカテゴリー
-categories,subtitle,様々な分野の専門クリエイターに出会いましょう。
-categories,linkText,詳細を見る
-cta,title,今すぐ始める
-cta,description,HGE Creatorと一緒にあなたのゲームを成功に導きましょう。
+home,statistics_creators_value,150+
+home,statistics_creators_label,登録クリエイター
+home,statistics_projects_value,80+
+home,statistics_projects_label,成功したコラボレーション
+home,statistics_companies_value,45+
+home,statistics_companies_label,パートナーゲーム会社
+home,core_values_title,私たちの核となる価値
+home,core_values_subtitle,HGE Creatorが追求する核となる価値観です。
+home,core_values_value1_title,相互成長
+home,core_values_value1_description,開発者とクリエイターが共に成長できる環境を作ります
+home,core_values_value2_title,創造的なコラボレーション
+home,core_values_value2_description,様々な分野の専門家が創造的にコラボレーションできるよう支援します
+home,core_values_value3_title,透明なコミュニケーション
+home,core_values_value3_description,明確で透明なコミュニケーションを通じて信頼できる関係を築きます
+home,core_values_value4_title,持続可能なエコシステム
+home,core_values_value4_description,長期的に持続可能なゲームクリエイターエコシステムを構築します
+home,categories_title,クリエイターカテゴリー
+home,categories_subtitle,様々な分野の専門クリエイターに出会いましょう。
+home,categories_link_text,詳細を見る
+home,cta_title,今すぐ始める
+home,cta_description,HGE Creatorと一緒にあなたのゲームを成功に導きましょう。
 header,logo,HGE Creator
 header,nav_home,ホーム
 header,nav_creators,クリエイター
