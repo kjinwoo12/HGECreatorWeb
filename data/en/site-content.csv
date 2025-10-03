@@ -103,8 +103,44 @@ participate,target_title,Target Participants
 participate,target_subtitle,We are looking for various types of collaboration partners.
 participate,requirements_title,Participation Requirements
 participate,requirements_subtitle,Basic requirements for successful collaboration.
+participate,developer_title,Game Developers
+participate,developer_description,Companies or individual developers creating indie games
+participate,developer_feature1,Creator Matching Service
+participate,developer_feature2,Collaboration Process Management
+participate,developer_feature3,Marketing Strategy Development
+participate,developer_feature4,Performance Analysis and Reporting
+participate,developer_req1,Have a game in development or planned for release
+participate,developer_req2,Clear goals and budget for collaboration
+participate,developer_req3,Willingness to communicate with creators
+participate,developer_req4,Ability to provide game-related materials
+participate,creator_title,Creators
+participate,creator_description,Content creators from various fields
+participate,creator_feature1,Game Collaboration Opportunities
+participate,creator_feature2,Fair Compensation Guarantee
+participate,creator_feature3,Portfolio Management
+participate,creator_feature4,Professional Development Support
+participate,creator_req1,At least 1 year of experience in the field
+participate,creator_req2,Portfolio or activity records
+participate,creator_req3,Regular content creation ability
+participate,creator_req4,Interest and understanding of games
 participate,process_title,Participation Process
 participate,process_subtitle,Start collaboration in 4 simple steps.
+participate,process_step1_title,Application Submission
+participate,process_step1_desc,Submit your collaboration application through the form below.
+participate,process_step2_title,Review and Consultation
+participate,process_step2_desc,A dedicated manager will contact you within 2-3 days for detailed consultation.
+participate,process_step3_title,Matching and Negotiation
+participate,process_step3_desc,We match you with suitable creators and negotiate collaboration terms.
+participate,process_step4_title,Start Collaboration
+participate,process_step4_desc,Begin full-scale collaboration after contract signing.
+participate,faq1_question,How are collaboration costs determined?
+participate,faq1_answer,Costs are determined by considering project scale, collaboration type, duration, etc. We propose optimal solutions within your budget through consultation.
+participate,faq2_question,How long does collaboration take?
+participate,faq2_answer,It varies by collaboration type, but generally takes 2 weeks to 3 months. We proceed with a schedule that fits your project characteristics.
+participate,faq3_question,Is collaboration possible for small indie games?
+participate,faq3_answer,Of course. We provide various collaboration options that fit your game scale and budget. Small projects can also achieve successful collaboration.
+participate,faq4_question,Are overseas games eligible for collaboration?
+participate,faq4_answer,Yes, collaboration with overseas game companies is possible. We match you with creators who have global marketing experience.
 participate,form_title,Collaboration Application
 participate,form_subtitle,Please fill out the form below to apply for collaboration. A dedicated manager will contact you within 2-3 days.
 participate,faq_title,Frequently Asked Questions
