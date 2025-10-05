@@ -20,11 +20,8 @@ export default function HeroSection({ content, statistics }) {
         <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 text-white">
             {/* 배경 패턴 */}
             <div className="absolute inset-0 bg-black/20"></div>
-            <div className="absolute inset-0 opacity-40" style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%239C92AC' fillOpacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}></div>
 
-            <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+            <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
                 <div className="text-center">
                     {/* 메인 타이틀 */}
                     <h1 className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">

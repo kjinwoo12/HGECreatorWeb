@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import HeroSection from '@/components/sections/home/HeroSection';
 import CoreValuesSection from '@/components/sections/home/CoreValuesSection';
 import CreatorCategoriesSection from '@/components/sections/home/CreatorCategoriesSection';
-import CTASection from '@/components/sections/home/CTASection';
 import { useDataStore } from '@/lib/dataStore';
 
 export default function Home() {
@@ -61,7 +60,6 @@ export default function Home() {
       <HeroSection content={content.home} statistics={content.home} />
       <CoreValuesSection content={content.home} />
       <CreatorCategoriesSection content={content.categories} categories={creatorCategories} />
-      <CTASection content={content.home} />
     </>
   );
 }
