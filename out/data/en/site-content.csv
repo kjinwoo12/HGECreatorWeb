@@ -380,5 +380,7 @@ success_stories,stats_repeat_rate_label,Repeat Collaboration Rate
 success_stories,stats_repeat_rate_desc,Partners who have collaborated once come back again
 success_stories,main_results_title,Key Results
 success_stories,participating_creators_title,Participating Creators
+success_stories,no_cases_title,No Success Stories
+success_stories,no_cases_message,There are no success stories registered yet.
 
 

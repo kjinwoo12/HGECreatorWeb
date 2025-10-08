@@ -380,5 +380,7 @@ success_stories,stats_repeat_rate_label,再協力率
 success_stories,stats_repeat_rate_desc,一度協力したパートナーが再び訪れます
 success_stories,main_results_title,主要成果
 success_stories,participating_creators_title,参加クリエイター
+success_stories,no_cases_title,成功事例がありません
+success_stories,no_cases_message,まだ登録された成功事例がありません。
 
 

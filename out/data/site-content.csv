@@ -352,3 +352,5 @@ success_stories,stats_repeat_rate_label,재협업률
 success_stories,stats_repeat_rate_desc,한번 협업한 파트너들이 다시 찾습니다
 success_stories,main_results_title,주요 성과
 success_stories,participating_creators_title,참여 크리에이터
+success_stories,no_cases_title,성공 사례가 없습니다
+success_stories,no_cases_message,아직 등록된 성공 사례가 없습니다.

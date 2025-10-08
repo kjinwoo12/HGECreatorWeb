@@ -176,67 +176,9 @@ class DataStore {
         }
     }
 
-    // 기본 성공 사례 데이터 반환
+    // 기본 성공 사례 데이터 반환 (fallback 제거)
     getDefaultSuccessStories() {
-        return [
-            {
-                id: 1,
-                title: "픽셀 아트 RPG '몽환의 여행' 대성공",
-                gameTitle: "몽환의 여행",
-                company: "인디스튜디오 A",
-                collaborationType: "스트리밍 + 일러스트",
-                description: "인디 RPG 게임의 스트리밍 협업과 팬아트 캠페인을 통해 런칭 첫 달 10만 다운로드를 달성했습니다.",
-                results: [
-                    "런칭 첫 달 10만 다운로드 달성",
-                    "YouTube 리뷰 영상 누적 조회수 50만회",
-                    "팬아트 이벤트 참여작 200개 이상",
-                    "Steam 평점 9.2/10 달성"
-                ],
-                creators: ["게임스트리머 김민수", "일러스트레이터 박지은"],
-                image: "/success-stories/SuccessStorySample.png",
-                date: "2024년 8월",
-                testimonial: "크리에이터들의 진정성 있는 리뷰와 아름다운 팬아트 덕분에 게임이 많은 사랑을 받을 수 있었습니다.",
-                clientName: "인디스튜디오 A 대표 이○○"
-            },
-            {
-                id: 2,
-                title: "모바일 퍼즐게임 '브레인 챌린지' 바이럴 성공",
-                gameTitle: "브레인 챌린지",
-                company: "퍼즐게임즈",
-                collaborationType: "콘텐츠 제작 + 마케팅",
-                description: "퍼즐게임의 특성을 살린 쇼츠 콘텐츠와 인플루언서 마케팅을 통해 앱스토어 1위를 달성했습니다.",
-                results: [
-                    "앱스토어 퍼즐게임 1위 달성",
-                    "쇼츠 콘텐츠 누적 조회수 1000만회",
-                    "인플루언서 협업 50명",
-                    "월간 활성 사용자 50만명"
-                ],
-                creators: ["콘텐츠 크리에이터 정다혜", "게임 마케터 서연주"],
-                image: "/success-stories/SuccessStorySample.png",
-                date: "2024년 7월",
-                testimonial: "쇼츠 콘텐츠의 바이럴 효과가 정말 놀라웠습니다. 게임의 재미를 한눈에 보여주는 영상들이 많은 사람들에게 전달되었어요.",
-                clientName: "퍼즐게임즈 대표 박○○"
-            },
-            {
-                id: 3,
-                title: "액션 게임 '네온 나이트' 글로벌 런칭",
-                gameTitle: "네온 나이트",
-                company: "액션스튜디오",
-                collaborationType: "성우 + 이벤트",
-                description: "한국어 더빙과 글로벌 이벤트를 통해 해외 시장 진출에 성공했습니다.",
-                results: [
-                    "글로벌 다운로드 100만회",
-                    "Steam 글로벌 판매량 1위",
-                    "게임 컨벤션 참여 10개국",
-                    "언론 보도 50개 이상"
-                ],
-                creators: ["성우 이성민", "이벤트 기획자 최유진"],
-                image: "/success-stories/SuccessStorySample.png",
-                date: "2024년 6월",
-                testimonial: "한국어 더빙의 퀄리티가 정말 높아서 해외 플레이어들도 한국어로 플레이하고 싶어했어요.",
-                clientName: "액션스튜디오 대표 김○○"
-            }
-        ];
+        return [];
     }
 
 

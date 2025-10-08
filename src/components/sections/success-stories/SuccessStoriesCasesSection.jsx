@@ -15,8 +15,12 @@ export default function SuccessStoriesCasesSection({ content, successStories }) 
             {successStories && successStories.length === 0 ? (
                 <div className="text-center py-12">
                     <div className="text-gray-400 text-6xl mb-4">📊</div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">성공 사례가 없습니다</h3>
-                    <p className="text-gray-600">아직 등록된 성공 사례가 없습니다.</p>
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">
+                        {content?.no_cases_title || '성공 사례가 없습니다'}
+                    </h3>
+                    <p className="text-gray-600">
+                        {content?.no_cases_message || '아직 등록된 성공 사례가 없습니다.'}
+                    </p>
                 </div>
             ) : (
                 <div className="space-y-16">
