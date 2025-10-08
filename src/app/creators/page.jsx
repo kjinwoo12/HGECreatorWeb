@@ -12,12 +12,27 @@ export default function CreatorsPage() {
     const { creators, siteContent } = useDataStore();
     const creatorsContent = siteContent?.creators || {};
 
+    // 모든 활동 분야 수집 (중복 제거)
+    const allActivities = useMemo(() => {
+        const activitiesSet = new Set();
+        creators.forEach(creator => {
+            if (creator.activities && Array.isArray(creator.activities)) {
+                creator.activities.forEach(activity => {
+                    if (activity) activitiesSet.add(activity);
+                });
+            }
+        });
+        return Array.from(activitiesSet).sort();
+    }, [creators]);
+
     // 필터링된 크리에이터 목록
     const filteredCreators = useMemo(() => {
         return creators.filter((creator) => {
-            // 카테고리 필터
-            if (filter.category && creator.category !== filter.category) {
-                return false;
+            // 활동 분야 필터
+            if (filter.activity && creator.activities) {
+                if (!creator.activities.includes(filter.activity)) {
+                    return false;
+                }
             }
 
             // 가용성 필터
@@ -36,8 +51,11 @@ export default function CreatorsPage() {
                 const matchesTags = creator.tags?.some(tag =>
                     tag.toLowerCase().includes(searchTerm)
                 );
+                const matchesActivities = creator.activities?.some(activity =>
+                    activity.toLowerCase().includes(searchTerm)
+                );
 
-                if (!matchesName && !matchesDescription && !matchesSpecialties && !matchesTags) {
+                if (!matchesName && !matchesDescription && !matchesSpecialties && !matchesTags && !matchesActivities) {
                     return false;
                 }
             }
@@ -71,6 +89,7 @@ export default function CreatorsPage() {
                     onFilterChange={setFilter}
                     totalCount={creators.length}
                     filteredCount={filteredCreators.length}
+                    allActivities={allActivities}
                 />
 
 

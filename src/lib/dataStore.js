@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { fetchCSV } from './csvParser';
 import { getCsvPath } from './pathUtils';
 import { mockSiteContent } from '@/data/siteContent';
-import { sampleCreators } from '@/data/creators';
 
 class DataStore {
     constructor() {
@@ -86,14 +85,14 @@ class DataStore {
                 this.loadSuccessStories()
             ]);
 
-            // 결과 처리
+            // 결과 처리 (fallback 제거하여 로딩 문제를 명확하게 파악)
             this.data.creators = creatorsData.status === 'fulfilled' 
                 ? creatorsData.value 
-                : sampleCreators;
+                : [];
 
             this.data.successStories = successStoriesData.status === 'fulfilled' 
                 ? successStoriesData.value 
-                : mockSuccessStories;
+                : [];
 
             // 언어가 설정되어 있으면 해당 언어 콘텐츠 로딩
             if (this.isLanguageSet) {
@@ -107,9 +106,9 @@ class DataStore {
             console.error('❌ 데이터 로딩 실패:', error);
             this.data.error = error;
             
-            // 에러 시 기본 데이터 사용
-            this.data.creators = sampleCreators;
-            this.data.successStories = mockSuccessStories;
+            // 에러 시 빈 배열 사용 (문제 파악을 위해 fallback 제거)
+            this.data.creators = [];
+            this.data.successStories = [];
             this.data.siteContent = this.languageCache[this.currentLanguage] || mockSiteContent;
             this.data.isLoaded = true;
         } finally {
@@ -133,8 +132,10 @@ class DataStore {
 
     async loadCreators() {
         const csvPath = this.getLanguageCsvPath(this.currentLanguage, 'creators.csv');
+        console.log('🔍 크리에이터 CSV 경로:', csvPath, '언어:', this.currentLanguage);
         const csvData = await this.loadCsvData(csvPath);
-        return csvData.length > 0 ? csvData : sampleCreators;
+        console.log('📊 크리에이터 CSV 데이터 개수:', csvData.length);
+        return csvData.length > 0 ? csvData : [];
     }
 
     async loadSuccessStories() {

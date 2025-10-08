@@ -9,28 +9,18 @@ export default function CreatorModal({ creator, isOpen, onClose }) {
     const { siteContent } = useDataStore();
     const creatorCardContent = siteContent?.creator_card || {};
 
-    const getCategoryColor = (category) => {
-        const colors = {
-            'streaming': 'bg-purple-100 text-purple-800',
-            'illustration': 'bg-pink-100 text-pink-800',
-            'voice-acting': 'bg-blue-100 text-blue-800',
-            'event-coordination': 'bg-green-100 text-green-800',
-            'content-creation': 'bg-yellow-100 text-yellow-800',
-            'marketing': 'bg-indigo-100 text-indigo-800',
-        };
-        return colors[category] || 'bg-gray-100 text-gray-800';
-    };
-
-    const getCategoryLabel = (category) => {
-        const labels = {
-            'streaming': creatorCardContent.streaming_label || '스트리밍',
-            'illustration': creatorCardContent.illustration_label || '일러스트',
-            'voice-acting': creatorCardContent.voice_acting_label || '성우',
-            'event-coordination': creatorCardContent.event_coordination_label || '이벤트',
-            'content-creation': creatorCardContent.content_creation_label || '콘텐츠',
-            'marketing': creatorCardContent.marketing_label || '마케팅',
-        };
-        return labels[category] || category;
+    const getActivityColor = (index) => {
+        const colors = [
+            'bg-purple-100 text-purple-800',
+            'bg-pink-100 text-pink-800',
+            'bg-blue-100 text-blue-800',
+            'bg-green-100 text-green-800',
+            'bg-yellow-100 text-yellow-800',
+            'bg-indigo-100 text-indigo-800',
+            'bg-red-100 text-red-800',
+            'bg-orange-100 text-orange-800',
+        ];
+        return colors[index % colors.length];
     };
 
     // ESC 키로 모달 닫기
@@ -54,7 +44,7 @@ export default function CreatorModal({ creator, isOpen, onClose }) {
     if (!isOpen || !creator) return null;
 
     // creator 객체의 필수 속성들이 존재하는지 확인
-    if (!creator.name || !creator.category || !creator.description) {
+    if (!creator.name || !creator.description) {
         console.error('Creator object is missing required properties:', creator);
         return null;
     }
@@ -118,15 +108,25 @@ export default function CreatorModal({ creator, isOpen, onClose }) {
 
                     {/* 정보 섹션 */}
                     <div className="lg:w-1/2 p-8 overflow-y-auto max-h-[90vh] custom-scrollbar">
-                        {/* 이름과 카테고리 */}
+                        {/* 이름과 활동 분야 */}
                         <div className="mb-6">
                             <div className="mb-4">
                                 <h2 className="text-3xl font-bold text-gray-900 mb-3">
                                     {creator.name}
                                 </h2>
-                                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getCategoryColor(creator.category)}`}>
-                                    {getCategoryLabel(creator.category)}
-                                </span>
+                                {/* 활동 분야 */}
+                                {creator.activities && creator.activities.length > 0 && (
+                                    <div className="flex flex-wrap gap-2">
+                                        {creator.activities.map((activity, index) => (
+                                            <span 
+                                                key={index}
+                                                className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getActivityColor(index)}`}
+                                            >
+                                                {activity}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </div>
 

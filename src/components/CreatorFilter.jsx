@@ -3,48 +3,15 @@
 import { useState } from 'react';
 import { useDataStore } from '@/lib/dataStore';
 
-export default function CreatorFilter({ onFilterChange, totalCount, filteredCount }) {
+export default function CreatorFilter({ onFilterChange, totalCount, filteredCount, allActivities = [] }) {
     const { siteContent } = useDataStore();
     const creatorsContent = siteContent?.creators || {};
     
-    // 카테고리 데이터를 동적으로 생성
-    const creatorCategories = [
-        {
-            value: 'streaming',
-            label: siteContent?.categories?.streaming_label || 'Error',
-            description: siteContent?.categories?.streaming_description || 'Error'
-        },
-        {
-            value: 'illustration',
-            label: siteContent?.categories?.illustration_label || 'Error',
-            description: siteContent?.categories?.illustration_description || 'Error'
-        },
-        {
-            value: 'voice-acting',
-            label: siteContent?.categories?.voice_acting_label || 'Error',
-            description: siteContent?.categories?.voice_acting_description || 'Error'
-        },
-        {
-            value: 'event-coordination',
-            label: siteContent?.categories?.event_coordination_label || 'Error',
-            description: siteContent?.categories?.event_coordination_description || 'Error'
-        },
-        {
-            value: 'content-creation',
-            label: siteContent?.categories?.content_creation_label || 'Error',
-            description: siteContent?.categories?.content_creation_description || 'Error'
-        },
-        {
-            value: 'marketing',
-            label: siteContent?.categories?.marketing_label || 'Error',
-            description: siteContent?.categories?.marketing_description || 'Error'
-        }
-    ];
     const [filter, setFilter] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
 
-    const handleCategoryChange = (category) => {
-        const newFilter = { ...filter, category };
+    const handleActivityChange = (activity) => {
+        const newFilter = { ...filter, activity };
         setFilter(newFilter);
         onFilterChange(newFilter);
     };
@@ -96,21 +63,21 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
 
                 {/* 필터 옵션들 */}
                 <div className="flex flex-wrap gap-4">
-                    {/* 카테고리 필터 */}
+                    {/* 활동 분야 필터 */}
                     <div>
-                        <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
-                            {creatorsContent.category_label || '카테고리'}
+                        <label htmlFor="activity" className="block text-sm font-medium text-gray-700 mb-1">
+                            {creatorsContent.activity_label || '활동 분야'}
                         </label>
                         <select
-                            id="category"
-                            value={filter.category || ''}
-                            onChange={(e) => handleCategoryChange(e.target.value || undefined)}
+                            id="activity"
+                            value={filter.activity || ''}
+                            onChange={(e) => handleActivityChange(e.target.value || undefined)}
                             className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         >
                             <option value="">{creatorsContent.category_all || '전체'}</option>
-                            {creatorCategories.map((category) => (
-                                <option key={category.value} value={category.value}>
-                                    {category.label}
+                            {allActivities.map((activity) => (
+                                <option key={activity} value={activity}>
+                                    {activity}
                                 </option>
                             ))}
                         </select>

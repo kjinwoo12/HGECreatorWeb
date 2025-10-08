@@ -17,7 +17,7 @@ export function parseCSV(csvText) {
             // 특수 처리
             if (header === 'isAvailable' || header === 'featured') {
                 obj[header] = value.toLowerCase() === 'true';
-            } else if (header === 'specialties' || header === 'tags') {
+            } else if (header === 'specialties' || header === 'tags' || header === 'activities') {
                 obj[header] = value.split(';').map(item => item.trim()).filter(item => item);
             } else if (['youtube', 'twitch', 'twitter', 'instagram'].includes(header)) {
                 // 소셜 링크는 socialLinks 객체로 그룹화

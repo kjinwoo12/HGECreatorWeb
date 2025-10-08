@@ -8,28 +8,19 @@ export default function CreatorCard({ creator }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { siteContent } = useDataStore();
     const creatorCardContent = siteContent?.creator_card || {};
-    const getCategoryColor = (category) => {
-        const colors = {
-            'streaming': 'bg-purple-100 text-purple-800',
-            'illustration': 'bg-pink-100 text-pink-800',
-            'voice-acting': 'bg-blue-100 text-blue-800',
-            'event-coordination': 'bg-green-100 text-green-800',
-            'content-creation': 'bg-yellow-100 text-yellow-800',
-            'marketing': 'bg-indigo-100 text-indigo-800',
-        };
-        return colors[category] || 'bg-gray-100 text-gray-800';
-    };
-
-    const getCategoryLabel = (category) => {
-        const labels = {
-            'streaming': creatorCardContent.streaming_label || '스트리밍',
-            'illustration': creatorCardContent.illustration_label || '일러스트',
-            'voice-acting': creatorCardContent.voice_acting_label || '성우',
-            'event-coordination': creatorCardContent.event_coordination_label || '이벤트',
-            'content-creation': creatorCardContent.content_creation_label || '콘텐츠',
-            'marketing': creatorCardContent.marketing_label || '마케팅',
-        };
-        return labels[category] || category;
+    
+    const getActivityColor = (index) => {
+        const colors = [
+            'bg-purple-100 text-purple-800',
+            'bg-pink-100 text-pink-800',
+            'bg-blue-100 text-blue-800',
+            'bg-green-100 text-green-800',
+            'bg-yellow-100 text-yellow-800',
+            'bg-indigo-100 text-indigo-800',
+            'bg-red-100 text-red-800',
+            'bg-orange-100 text-orange-800',
+        ];
+        return colors[index % colors.length];
     };
 
     return (
@@ -70,14 +61,29 @@ export default function CreatorCard({ creator }) {
 
             {/* 카드 내용 */}
             <div className="p-6">
-                {/* 이름과 카테고리 */}
-                <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-lg font-semibold text-gray-900 truncate pr-2">
+                {/* 이름 */}
+                <div className="mb-3">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
                         {creator.name}
                     </h3>
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getCategoryColor(creator.category)}`}>
-                        {getCategoryLabel(creator.category)}
-                    </span>
+                    {/* 활동 분야 */}
+                    {creator.activities && creator.activities.length > 0 && (
+                        <div className="flex flex-wrap gap-1">
+                            {creator.activities.slice(0, 3).map((activity, index) => (
+                                <span 
+                                    key={index}
+                                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getActivityColor(index)}`}
+                                >
+                                    {activity}
+                                </span>
+                            ))}
+                            {creator.activities.length > 3 && (
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                    +{creator.activities.length - 3}
+                                </span>
+                            )}
+                        </div>
+                    )}
                 </div>
 
                 {/* 설명 */}

@@ -30,14 +30,33 @@ export function isActivePath(currentPath, targetPath) {
 }
 
 /**
+ * basePath를 반환합니다.
+ * GitHub Pages 환경에서는 '/HGECreatorWeb'을, 로컬에서는 ''을 반환합니다.
+ * @returns {string} basePath
+ */
+function getBasePath() {
+    // 클라이언트 사이드에서만 실행
+    if (typeof window !== 'undefined') {
+        const hostname = window.location.hostname;
+        // GitHub Pages에서 실행 중인 경우
+        if (hostname.includes('github.io')) {
+            return '/HGECreatorWeb';
+        }
+    }
+    // SSR이거나 로컬 환경인 경우
+    return process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_BASE_PATH 
+        ? process.env.NEXT_PUBLIC_BASE_PATH 
+        : '';
+}
+
+/**
  * CSV 파일 경로를 생성합니다.
  * @param {string} filename - CSV 파일명
  * @param {string} language - 언어 코드 ('ko', 'en', 'jp')
  * @returns {string} CSV 파일의 전체 경로
  */
 export function getCsvPath(filename, language = 'ko') {
-    // GitHub Pages 환경에서 basePath를 고려한 경로 생성
-    const basePath = process.env.NODE_ENV === 'production' ? '/HGECreatorWeb' : '';
+    const basePath = getBasePath();
     
     if (language === 'ko') {
         return `${basePath}/data/${filename}`;
@@ -51,7 +70,6 @@ export function getCsvPath(filename, language = 'ko') {
  * @returns {string} 이미지 경로
  */
 export function getImagePath(imagePath) {
-    // GitHub Pages 환경에서 basePath를 고려한 경로 생성
-    const basePath = process.env.NODE_ENV === 'production' ? '/HGECreatorWeb' : '';
+    const basePath = getBasePath();
     return `${basePath}${imagePath}`;
 }
