@@ -38,17 +38,6 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* 빠른 링크 */}
-                    <div>
-                        <h3 className="text-lg font-semibold mb-4">{content.footer?.quick_links_title || '빠른 링크'}</h3>
-                        <ul className="space-y-2">
-                            <li><Link href="/creators" className="text-gray-300 hover:text-white transition-colors">{content.footer?.quick_link_creators || '크리에이터'}</Link></li>
-                            <li><Link href="/collaboration" className="text-gray-300 hover:text-white transition-colors">{content.footer?.quick_link_collaboration || '협업 프로세스'}</Link></li>
-                            <li><Link href="/success-stories" className="text-gray-300 hover:text-white transition-colors">{content.footer?.quick_link_success_stories || '성공 사례'}</Link></li>
-                            <li><Link href="/participate" className="text-gray-300 hover:text-white transition-colors">{content.footer?.quick_link_participate || '참여 방법'}</Link></li>
-                        </ul>
-                    </div>
-
                     {/* 연락처 */}
                     <div>
                         <h3 className="text-lg font-semibold mb-4">{content.footer?.contact_title || '연락처'}</h3>

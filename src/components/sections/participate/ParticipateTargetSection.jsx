@@ -4,9 +4,9 @@ export default function ParticipateTargetSection({ content, participationTypes }
     return (
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900">{content?.target_title || '참여 대상'}</h2>
+                <h2 className="text-3xl font-bold text-gray-900">{content?.target_title || 'Error'}</h2>
                 <p className="mt-4 text-lg text-gray-600">
-                    {content?.target_subtitle || '다양한 형태의 협업 파트너를 찾고 있습니다.'}
+                    {content?.target_subtitle || 'Error'}
                 </p>
             </div>
 
@@ -20,7 +20,7 @@ export default function ParticipateTargetSection({ content, participationTypes }
                         </div>
 
                         <div>
-                            <h4 className="text-lg font-semibold text-gray-900 mb-4">제공 서비스</h4>
+                            <h4 className="text-lg font-semibold text-gray-900 mb-4">{content?.target_services_title || 'Error'}</h4>
                             <ul className="space-y-2">
                                 {type.features.map((feature, featureIndex) => (
                                     <li key={featureIndex} className="flex items-start">

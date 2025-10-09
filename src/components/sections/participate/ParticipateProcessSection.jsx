@@ -5,9 +5,9 @@ export default function ParticipateProcessSection({ content, process }) {
         <div className="bg-gray-50 py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900">{content?.process_title || '참여 프로세스'}</h2>
+                    <h2 className="text-3xl font-bold text-gray-900">{content?.process_title || 'Error'}</h2>
                     <p className="mt-4 text-lg text-gray-600">
-                        {content?.process_subtitle || '간단한 4단계로 협업을 시작할 수 있습니다.'}
+                        {content?.process_subtitle || 'Error'}
                     </p>
                 </div>
 

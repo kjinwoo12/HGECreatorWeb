@@ -5,9 +5,9 @@ export default function ParticipateRequirementsSection({ content, requirements }
         <div className="bg-white py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900">{content?.requirements_title || '참여 요건'}</h2>
+                    <h2 className="text-3xl font-bold text-gray-900">{content?.requirements_title || 'Error'}</h2>
                     <p className="mt-4 text-lg text-gray-600">
-                        {content?.requirements_subtitle || '성공적인 협업을 위한 기본 요건들입니다.'}
+                        {content?.requirements_subtitle || 'Error'}
                     </p>
                 </div>
 

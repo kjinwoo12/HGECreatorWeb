@@ -7,7 +7,6 @@ import ParticipateRequirementsSection from '@/components/sections/participate/Pa
 import ParticipateProcessSection from '@/components/sections/participate/ParticipateProcessSection';
 import ParticipateApplicationSection from '@/components/sections/participate/ParticipateApplicationSection';
 import ParticipateFAQSection from '@/components/sections/participate/ParticipateFAQSection';
-import ParticipateContactSection from '@/components/sections/participate/ParticipateContactSection';
 
 export default function ParticipatePage() {
     const { siteContent } = useDataStore();
@@ -90,7 +89,6 @@ export default function ParticipatePage() {
             <ParticipateProcessSection content={content} process={process} />
             <ParticipateApplicationSection content={content} />
             <ParticipateFAQSection content={content} />
-            <ParticipateContactSection content={content} />
         </div>
     );
 }
