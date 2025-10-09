@@ -22,7 +22,7 @@ export function createPath(path) {
 export function isActivePath(currentPath, targetPath) {
     // 홈페이지의 경우 정확히 일치해야 함
     if (targetPath === '/') {
-        return currentPath === targetPath || currentPath.endsWith('/');
+        return currentPath === '/' || currentPath === '';
     }
     
     // 다른 페이지의 경우 경로가 시작하는지 확인
