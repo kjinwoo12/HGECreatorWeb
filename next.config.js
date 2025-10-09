@@ -13,9 +13,8 @@ const nextConfig = {
   },
   // 개발/프로덕션 환경 분리
   ...(process.env.NODE_ENV === 'production' ? {
-    // 프로덕션 환경 (GitHub Pages 배포용)
+    // 프로덕션 환경 (도메인 직접 연결용)
     output: 'export',
-    basePath: '/HGECreatorWeb',
     trailingSlash: true,
     images: {
       unoptimized: true

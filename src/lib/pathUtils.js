@@ -1,6 +1,6 @@
 /**
- * GitHub Pages 배포 시 basePath를 고려한 경로 처리 유틸리티
- * Next.js의 basePath 설정을 활용하여 자동으로 처리됩니다.
+ * 도메인 직접 연결을 위한 경로 처리 유틸리티
+ * 정적 파일 경로를 올바르게 처리합니다.
  */
 
 /**
@@ -31,22 +31,12 @@ export function isActivePath(currentPath, targetPath) {
 
 /**
  * basePath를 반환합니다.
- * GitHub Pages 환경에서는 '/HGECreatorWeb'을, 로컬에서는 ''을 반환합니다.
+ * 도메인 직접 연결 환경에서는 빈 문자열을 반환합니다.
  * @returns {string} basePath
  */
 function getBasePath() {
-    // 클라이언트 사이드에서만 실행
-    if (typeof window !== 'undefined') {
-        const hostname = window.location.hostname;
-        // GitHub Pages에서 실행 중인 경우
-        if (hostname.includes('github.io')) {
-            return '/HGECreatorWeb';
-        }
-    }
-    // SSR이거나 로컬 환경인 경우
-    return process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_BASE_PATH 
-        ? process.env.NEXT_PUBLIC_BASE_PATH 
-        : '';
+    // 도메인 직접 연결 환경에서는 basePath가 필요 없음
+    return '';
 }
 
 /**
