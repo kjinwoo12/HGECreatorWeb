@@ -17,7 +17,7 @@ export default function Header() {
         { name: content.header?.nav_home || '홈', href: '/' },
         { name: content.header?.nav_creators || '크리에이터', href: '/creators' },
         { name: content.header?.nav_collaboration || '협업 프로세스', href: '/collaboration' },
-        { name: content.header?.nav_success_stories || '성공 사례', href: '/success-stories' },
+        /*{ name: content.header?.nav_success_stories || '성공 사례', href: '/success-stories' }, 임시 비활성화 20251009*/
         { name: content.header?.nav_participate || '참여 방법', href: '/participate' },
     ];
 
@@ -43,11 +43,10 @@ export default function Header() {
                                     <Link
                                         key={item.name}
                                         href={item.href}
-                                        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                                            isActive
+                                        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive
                                                 ? 'text-indigo-600'
                                                 : 'text-gray-700 hover:text-indigo-600'
-                                        }`}
+                                            }`}
                                     >
                                         {item.name}
                                     </Link>
@@ -64,7 +63,7 @@ export default function Header() {
                     <div className="md:hidden flex items-center space-x-2">
                         {/* 모바일 언어 선택 버튼 */}
                         <LanguageSelector />
-                        
+
                         {/* 모바일 메뉴 버튼 */}
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -95,11 +94,10 @@ export default function Header() {
                                     <Link
                                         key={item.name}
                                         href={item.href}
-                                        className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                                            isActive
+                                        className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${isActive
                                                 ? 'text-indigo-600'
                                                 : 'text-gray-700 hover:text-indigo-600'
-                                        }`}
+                                            }`}
                                         onClick={() => setIsMenuOpen(false)}
                                     >
                                         {item.name}
