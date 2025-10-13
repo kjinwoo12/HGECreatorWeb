@@ -60,6 +60,16 @@ export function getCsvPath(filename, language = 'ko') {
  * @returns {string} 이미지 경로
  */
 export function getImagePath(imagePath) {
+    if (!imagePath) {
+        return '';
+    }
+    
+    // 절대 URL인 경우 그대로 반환 (Google Drive 링크 포함)
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+        return imagePath;
+    }
+    
+    // 로컬 이미지인 경우 basePath 추가
     const basePath = getBasePath();
     return `${basePath}${imagePath}`;
 }

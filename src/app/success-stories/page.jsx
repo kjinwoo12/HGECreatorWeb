@@ -17,9 +17,6 @@ export default function SuccessStoriesPage() {
     useEffect(() => {
         const loadSuccessStories = async () => {
             try {
-                console.log('🔄 성공 사례 페이지 로딩 시작');
-                console.log('📊 현재 데이터 상태:', { isLoaded, isLoading, error });
-                console.log('📈 성공 사례 데이터:', successStories);
                 
                 // 데이터가 로드되었거나 로딩이 완료되면 로딩 상태 해제
                 if (isLoaded || !isLoading) {

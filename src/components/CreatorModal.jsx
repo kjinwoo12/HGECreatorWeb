@@ -95,15 +95,6 @@ export default function CreatorModal({ creator, isOpen, onClose }) {
                             )}
                         </div>
 
-                        {/* 가용성 배지 */}
-                        <div className="absolute top-4 left-4">
-                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${creator.isAvailable
-                                ? 'bg-green-100 text-green-800'
-                                : 'bg-red-100 text-red-800'
-                                }`}>
-                                {creator.isAvailable ? (creatorCardContent.available || '협업 가능') : (creatorCardContent.unavailable || '협업 불가')}
-                            </span>
-                        </div>
                     </div>
 
                     {/* 정보 섹션 */}

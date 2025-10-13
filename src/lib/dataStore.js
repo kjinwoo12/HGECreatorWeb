@@ -43,7 +43,6 @@ class DataStore {
     async setInitialLanguage(langCode) {
         if (this.isLanguageSet) return;
         
-        console.log(`🌐 초기 언어 설정: ${langCode}`);
         this.currentLanguage = langCode;
         this.isLanguageSet = true;
         
@@ -77,7 +76,6 @@ class DataStore {
         this.notify();
 
         try {
-            console.log('📊 CSV 데이터 로딩 시작...');
 
             // 크리에이터와 성공 사례만 로딩 (언어별 콘텐츠는 별도)
             const [creatorsData, successStoriesData] = await Promise.allSettled([
@@ -100,7 +98,6 @@ class DataStore {
             }
 
             this.data.isLoaded = true;
-            console.log('✅ 모든 CSV 데이터 로딩 완료!');
 
         } catch (error) {
             console.error('❌ 데이터 로딩 실패:', error);
@@ -122,7 +119,6 @@ class DataStore {
     async loadCsvData(csvPath) {
         try {
             const csvData = await fetchCSV(csvPath);
-            console.log('✅ CSV 데이터 로딩 완료');
             return csvData;
         } catch (error) {
             console.warn('⚠️ CSV 로딩 실패, 기본 데이터 사용:', error.message);
@@ -132,9 +128,7 @@ class DataStore {
 
     async loadCreators() {
         const csvPath = this.getLanguageCsvPath(this.currentLanguage, 'creators.csv');
-        console.log('🔍 크리에이터 CSV 경로:', csvPath, '언어:', this.currentLanguage);
         const csvData = await this.loadCsvData(csvPath);
-        console.log('📊 크리에이터 CSV 데이터 개수:', csvData.length);
         return csvData.length > 0 ? csvData : [];
     }
 
@@ -142,10 +136,7 @@ class DataStore {
         try {
             // 언어별 CSV 파일 경로 설정
             const csvPath = getCsvPath('success-stories.csv', this.currentLanguage);
-            console.log('🔍 성공 사례 CSV 경로:', csvPath);
-            
             const csvData = await this.loadCsvData(csvPath);
-            console.log('📊 성공 사례 CSV 데이터:', csvData);
             
             if (csvData.length > 0) {
                 // CSV 데이터를 성공 사례 객체로 변환
@@ -164,11 +155,8 @@ class DataStore {
                     clientName: row.clientName
                 }));
                 
-                console.log('✅ 성공 사례 데이터 변환 완료:', successStories);
                 return successStories;
             }
-            
-            console.log('⚠️ CSV 데이터가 없어서 기본 데이터 사용');
             return this.getDefaultSuccessStories();
         } catch (error) {
             console.error('❌ 성공 사례 로딩 실패:', error);

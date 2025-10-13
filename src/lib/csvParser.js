@@ -7,7 +7,7 @@ export function parseCSV(csvText) {
     const lines = csvText.trim().split('\n');
     const headers = lines[0].split(',').map(header => header.trim());
     
-    return lines.slice(1).map(line => {
+    return lines.slice(1).map((line, lineIndex) => {
         const values = parseCSVLine(line);
         const obj = {};
         
@@ -19,14 +19,6 @@ export function parseCSV(csvText) {
                 obj[header] = value.toLowerCase() === 'true';
             } else if (header === 'specialties' || header === 'tags' || header === 'activities') {
                 obj[header] = value.split(';').map(item => item.trim()).filter(item => item);
-            } else if (['youtube', 'twitch', 'twitter', 'instagram'].includes(header)) {
-                // 소셜 링크는 socialLinks 객체로 그룹화
-                if (!obj.socialLinks) {
-                    obj.socialLinks = {};
-                }
-                if (value.trim()) {
-                    obj.socialLinks[header] = value;
-                }
             } else {
                 obj[header] = value;
             }
@@ -78,23 +70,18 @@ function parseCSVLine(line) {
  */
 export async function fetchCSV(csvPath) {
     try {
-        console.log('🔍 CSV 파일 요청:', csvPath);
         const response = await fetch(csvPath);
-        console.log('📡 응답 상태:', response.status, response.statusText);
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
         }
         
         const csvText = await response.text();
-        console.log('📄 CSV 텍스트 길이:', csvText.length);
-        
         const parsedData = parseCSV(csvText);
-        console.log('✅ CSV 파싱 완료:', parsedData.length, '개 항목');
         
         return parsedData;
     } catch (error) {
-        console.error(`❌ CSV 파일 로드 실패 (${csvPath}):`, error);
+        console.error(`CSV 파일 로드 실패 (${csvPath}):`, error);
         throw error;
     }
 }

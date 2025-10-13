@@ -16,11 +16,6 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
         onFilterChange(newFilter);
     };
 
-    const handleAvailabilityChange = (isAvailable) => {
-        const newFilter = { ...filter, isAvailable };
-        setFilter(newFilter);
-        onFilterChange(newFilter);
-    };
 
     const handleSearchChange = (term) => {
         setSearchTerm(term);
@@ -83,25 +78,6 @@ export default function CreatorFilter({ onFilterChange, totalCount, filteredCoun
                         </select>
                     </div>
 
-                    {/* 가용성 필터 */}
-                    <div>
-                        <label htmlFor="availability" className="block text-sm font-medium text-gray-700 mb-1">
-                            {creatorsContent.availability_label || '협업 가능성'}
-                        </label>
-                        <select
-                            id="availability"
-                            value={filter.isAvailable === undefined ? '' : filter.isAvailable.toString()}
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                handleAvailabilityChange(value === '' ? undefined : value === 'true');
-                            }}
-                            className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                        >
-                            <option value="">{creatorsContent.category_all || '전체'}</option>
-                            <option value="true">{creatorsContent.availability_available || '협업 가능'}</option>
-                            <option value="false">{creatorsContent.availability_unavailable || '협업 불가'}</option>
-                        </select>
-                    </div>
 
                     {/* 필터 초기화 */}
                     <div className="flex items-end">

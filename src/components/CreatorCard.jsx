@@ -6,6 +6,7 @@ import { getImagePath } from '@/lib/pathUtils';
 
 export default function CreatorCard({ creator }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [imageError, setImageError] = useState(false);
     const { siteContent } = useDataStore();
     const creatorCardContent = siteContent?.creator_card || {};
     
@@ -27,15 +28,17 @@ export default function CreatorCard({ creator }) {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
             {/* 프로필 이미지 */}
             <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200">
-                {creator.profileImage ? (
+                {creator.profileImage && !imageError ? (
                     <Image
                         src={getImagePath(creator.profileImage)}
                         alt={creator.name}
                         fill
                         className="object-cover"
-                        onError={(e) => {
-                            // 이미지 로드 실패 시 기본 아바타 표시
-                            e.target.style.display = 'none';
+                        onError={() => {
+                            setImageError(true);
+                        }}
+                        onLoad={() => {
+                            setImageError(false);
                         }}
                     />
                 ) : (
@@ -48,15 +51,6 @@ export default function CreatorCard({ creator }) {
                     </div>
                 )}
 
-                {/* 가용성 배지 */}
-                <div className="absolute top-4 right-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${creator.isAvailable
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-red-100 text-red-800'
-                        }`}>
-                        {creator.isAvailable ? (creatorCardContent.available || '협업 가능') : (creatorCardContent.unavailable || '협업 불가')}
-                    </span>
-                </div>
             </div>
 
             {/* 카드 내용 */}

@@ -17,13 +17,33 @@ const nextConfig = {
     output: 'export',
     trailingSlash: true,
     images: {
-      unoptimized: true
+      unoptimized: true,
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'lh3.googleusercontent.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'drive.google.com',
+        }
+      ]
     },
     distDir: 'out'
   } : {
     // 개발 환경
     images: {
-      unoptimized: true
+      unoptimized: true,
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'lh3.googleusercontent.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'drive.google.com',
+        }
+      ]
     }
   })
 };
