@@ -80,6 +80,7 @@ export default function CreatorModal({ creator, isOpen, onClose }) {
                                     alt={creator.name}
                                     fill
                                     className="object-cover"
+                                    style={{ objectPosition: 'center 15%' }}
                                     onError={(e) => {
                                         e.target.style.display = 'none';
                                     }}
