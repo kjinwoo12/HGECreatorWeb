@@ -207,9 +207,9 @@ NEXT_PUBLIC_CONTENT_SHEETS_SPREADSHEET_ID=your_content_sheet_id
 
 ## 📞 연락처
 
-- 이메일: contact@hgecreator.com
-- 전화: 02-1234-5678
-- 주소: 서울시 강남구 테헤란로 123
+- 이메일: kyle@hgecreator.com
+- 전화: 
+- 주소: 
 
 ## 📄 라이선스
 
