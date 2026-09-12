@@ -31,12 +31,12 @@ export function isActivePath(currentPath, targetPath) {
 
 /**
  * basePath를 반환합니다.
- * 도메인 직접 연결 환경에서는 빈 문자열을 반환합니다.
+ * GitHub Pages 프로젝트 사이트(https://<user>.github.io/HGECreatorWeb/)에 배포되므로
+ * 프로덕션 빌드에서는 '/HGECreatorWeb'을 반환합니다.
  * @returns {string} basePath
  */
 function getBasePath() {
-    // 도메인 직접 연결 환경에서는 basePath가 필요 없음
-    return '';
+    return process.env.NODE_ENV === 'production' ? '/HGECreatorWeb' : '';
 }
 
 /**
